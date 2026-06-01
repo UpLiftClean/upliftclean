@@ -1,48 +1,56 @@
-<!-- Restored Product Grid with Verified Image Integration -->
-<div class="px-4">
-    <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
-    <div class="grid grid-cols-2 gap-3">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpLiftClean | Shop Organic Laundry Care</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-[#F6F6F6] min-h-screen flex flex-col items-center">
+    <div class="w-full max-w-md bg-white min-h-screen shadow-xl pb-24">
         
-        <!-- 1. Pure Power Set -->
-        <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-            <div>
-                <div class="bg-slate-50 rounded-xl p-3 mb-2 flex items-center justify-center">
-                    <img src="1000052415.png" alt="The Pure Power Set" class="w-full h-32 object-contain">
-                </div>
-                <h4 class="font-bold text-xs">The Pure Power Set</h4>
-                <p class="text-[9px] text-slate-400">30 loads / 450g</p>
-                <div class="font-bold text-sm my-2">$7.99 USD</div>
-            </div>
-            <button class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
-            <p class="text-[8px] text-slate-500 italic mt-2 border-t pt-2">Notice for all customers, You can also order through our facebook page, especially for those that are Founding Brand Partners and receive your FBP discounts.</p>
-        </div>
+        <!-- Header -->
+        <header class="bg-white p-4 border-b border-slate-100 sticky top-0 z-50">
+            <h1 class="font-bold text-xl">UpLiftClean Command Center</h1>
+        </header>
 
-        <!-- 2. Pure Prime Soap -->
-        <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-            <div>
-                <div class="bg-slate-50 rounded-xl p-3 mb-2 flex items-center justify-center">
-                    <img src="1000052416.jpg" alt="Pure Prime Saponin Soap" class="w-full h-32 object-contain">
-                </div>
-                <h4 class="font-bold text-xs">Pure Prime Saponin Soap</h4>
-                <p class="text-[9px] text-slate-400">30 loads / 100g</p>
-                <div class="font-bold text-sm my-2">$4.99 USD</div>
+        <main class="p-4 space-y-6">
+            <!-- Product Grid -->
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Products would be here, using the 'https://m.me/YOUR_PAGE_NAME' link for buttons -->
+                <a href="https://m.me/UpLiftClean" class="block border rounded-2xl p-3 bg-white shadow-sm">
+                    <img src="1000052415.png" class="w-full h-24 object-contain">
+                    <h4 class="font-bold text-xs mt-2">The Pure Power Set</h4>
+                    <button class="w-full bg-emerald-700 text-white text-[10px] py-2 mt-2 rounded-lg">Order via Messenger</button>
+                </a>
             </div>
-            <button class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
-            <p class="text-[8px] text-slate-500 italic mt-2 border-t pt-2">Notice for all customers, You can also order through our facebook page, especially for those that are Founding Brand Partners and receive your FBP discounts.</p>
-        </div>
 
-        <!-- 3. Pure Plus Booster -->
-        <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-            <div>
-                <div class="bg-slate-50 rounded-xl p-3 mb-2 flex items-center justify-center">
-                    <img src="1000052417.jpg" alt="Pure Plus Laundry Booster" class="w-full h-32 object-contain">
-                </div>
-                <h4 class="font-bold text-xs">Pure Plus Laundry Booster</h4>
-                <p class="text-[9px] text-slate-400">30 loads / 350g</p>
-                <div class="font-bold text-sm my-2">$4.49 USD</div>
+            <!-- Secret Sample Module -->
+            <div class="p-4 bg-slate-50 rounded-xl border border-dashed border-slate-300">
+                <label class="text-[10px] font-bold text-slate-500 uppercase">Secret Sample Code</label>
+                <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-3 py-2 rounded-lg border my-2">
+                <button onclick="processSecretSample()" class="w-full bg-slate-900 text-white text-xs py-2 rounded-lg">Apply Secret Code</button>
             </div>
-            <button class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
-            <p class="text-[8px] text-slate-500 italic mt-2 border-t pt-2">Notice for all customers, You can also order through our facebook page, especially for those that are Founding Brand Partners and receive your FBP discounts.</p>
-        </div>
+
+            <!-- Packing Slip Generator -->
+            <div id="packer-receipt" class="hidden p-4 bg-white border border-slate-200">
+                <h2 class="text-lg font-bold text-center">UpLiftClean Packing Slip</h2>
+                <button onclick="window.print()" class="w-full bg-slate-900 text-white text-xs py-2 mt-4 rounded-lg">Print Slip for Package</button>
+            </div>
+        </main>
     </div>
-</div>
+
+    <script>
+        const SECRET_KEY = "UPLIFT-SAMPLE-2026"; 
+        function processSecretSample() {
+            if (document.getElementById('secret-code').value === SECRET_KEY) {
+                document.getElementById('packer-receipt').classList.remove('hidden');
+                alert("Secret Code Accepted: Generating Packing Slip.");
+            } else {
+                alert("Invalid Code.");
+            }
+        }
+    </script>
+</body>
+</html>
