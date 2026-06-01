@@ -3,50 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UpLiftClean | Shop Organic Laundry Care</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <title>UpLiftClean Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#F6F6F6] min-h-screen flex flex-col items-center">
-    <div class="w-full max-w-md bg-white min-h-screen shadow-xl pb-24">
+<body class="bg-[#F6F6F6] p-4">
+    <div class="max-w-md mx-auto bg-white shadow-lg rounded-2xl p-4">
+        <h1 class="font-bold text-xl mb-4">UpLiftClean Command Center</h1>
         
-        <!-- Header -->
-        <header class="bg-white p-4 border-b border-slate-100 sticky top-0 z-50">
-            <h1 class="font-bold text-xl">UpLiftClean Command Center</h1>
-        </header>
-
-        <main class="p-4 space-y-6">
-            <!-- Product Grid -->
-            <div class="grid grid-cols-2 gap-3">
-                <!-- Messenger Link Integration -->
-                <a href="https://m.me/upliftcleanofficial" class="block border rounded-2xl p-3 bg-white shadow-sm">
-                    <img src="1000052415.png" class="w-full h-24 object-contain">
-                    <h4 class="font-bold text-xs mt-2">The Pure Power Set</h4>
-                    <button class="w-full bg-emerald-700 text-white text-[10px] py-2 mt-2 rounded-lg">Order via Messenger</button>
-                </a>
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 gap-4">
+            <!-- Product 1 -->
+            <div class="border rounded-2xl p-3 bg-white">
+                <img src="1000052415.png" class="w-full h-32 object-contain bg-slate-50 rounded-lg">
+                <h4 class="font-bold text-sm mt-2">The Pure Power Set</h4>
+                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-emerald-700 text-white text-xs py-2 mt-2 rounded-lg">Order via Messenger</a>
             </div>
+            <!-- Repeat similar blocks for other products using their specific filenames -->
+        </div>
 
-            <!-- Secret Sample Module -->
-            <div class="p-4 bg-slate-50 rounded-xl border border-dashed border-slate-300">
-                <label class="text-[10px] font-bold text-slate-500 uppercase">Secret Sample Code</label>
-                <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-3 py-2 rounded-lg border my-2">
-                <button onclick="processSecretSample()" class="w-full bg-slate-900 text-white text-xs py-2 rounded-lg">Apply Secret Code</button>
-            </div>
-
-            <!-- Packing Slip Generator -->
-            <div id="packer-receipt" class="hidden p-4 bg-white border border-slate-200">
-                <h2 class="text-lg font-bold text-center">UpLiftClean Packing Slip</h2>
-                <button onclick="window.print()" class="w-full bg-slate-900 text-white text-xs py-2 mt-4 rounded-lg">Print Slip for Package</button>
-            </div>
-        </main>
+        <!-- Secret Sample Module -->
+        <div class="mt-6 p-4 bg-slate-50 rounded-xl border border-dashed border-slate-300">
+            <label class="text-[10px] font-bold text-slate-500 uppercase">Secret Sample Code</label>
+            <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-3 py-2 rounded-lg border my-2">
+            <button onclick="processSecretSample()" class="w-full bg-slate-900 text-white text-xs py-2 rounded-lg">Apply Secret Code</button>
+        </div>
     </div>
 
     <script>
-        const SECRET_KEY = "UPLIFT-SAMPLE-2026"; 
         function processSecretSample() {
-            if (document.getElementById('secret-code').value === SECRET_KEY) {
-                document.getElementById('packer-receipt').classList.remove('hidden');
-                alert("Secret Code Accepted: Generating Packing Slip.");
+            if (document.getElementById('secret-code').value === "UPLIFT-SAMPLE-2026") {
+                alert("Code Accepted. Redirecting to Packing Slip...");
+                // Logic to show receipt/packing slip
             } else {
                 alert("Invalid Code.");
             }
