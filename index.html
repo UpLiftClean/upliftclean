@@ -7,35 +7,70 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .product-card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .product-card { background: white; border: 1px solid #E2E8F0; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.2s; }
     </style>
 </head>
-<body class="pb-20">
-    <header class="max-w-md mx-auto pt-10 pb-6 px-6">
-        <h1 class="text-3xl font-bold text-slate-950 tracking-tighter">UpLiftClean</h1>
-        <p class="text-sm text-slate-500 font-medium">Natural Purity, Professional Grade.</p>
-    </header>
+<body class="flex justify-center pb-20">
+    <div class="w-full max-w-md bg-white min-h-screen shadow-2xl">
+        
+        <!-- Header -->
+        <header class="p-6 border-b border-slate-100">
+            <h1 class="font-bold text-2xl tracking-tight text-slate-950">UpLiftClean</h1>
+            <p class="text-xs text-slate-500 font-medium">Natural Purity, Professional Grade.</p>
+        </header>
 
-    <div class="max-w-md mx-auto px-4 space-y-6">
-        <div class="product-card">
-            <img src="thecompleteset.png" class="w-full h-48 object-contain mb-4">
-            <h4 class="font-bold text-lg">The Complete Set</h4>
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YOUR_BUTTON_ID" class="block text-center bg-blue-600 text-white py-3 rounded-xl font-bold mt-4">Pay with PayPal</a>
-        </div>
+        <main class="p-6 space-y-8">
+            <!-- Product Grid -->
+            <div class="grid grid-cols-2 gap-4">
+                
+                <!-- Complete Set -->
+                <div class="product-card col-span-2">
+                    <img src="thecompleteset.png" class="w-full h-48 object-contain mb-4">
+                    <h4 class="font-bold text-sm text-slate-900">The Complete Set</h4>
+                    <a href="https://m.me/UpLiftClean" class="block text-center bg-[#006437] text-white text-xs py-4 mt-4 rounded-xl font-bold hover:bg-emerald-900 transition">Order via Messenger</a>
+                </div>
 
-        <div class="grid grid-cols-2 gap-4">
-            <div class="product-card">
-                <img src="pureprime.jpg" class="w-full h-32 object-contain mb-4">
-                <h4 class="font-bold text-sm">Pure Prime Soap</h4>
-                <a href="https://www.paypal.com/..." class="block text-center bg-blue-600 text-white py-2 rounded-lg text-xs mt-2 font-bold">Buy Now</a>
+                <!-- Pure Prime -->
+                <div class="product-card">
+                    <img src="pureprime.jpg" class="w-full h-32 object-contain mb-4">
+                    <h4 class="font-bold text-xs text-slate-900">Pure Prime Soap</h4>
+                    <a href="https://m.me/UpLiftClean" class="block text-center bg-[#006437] text-white text-[10px] py-3 mt-3 rounded-lg font-bold">Order via Messenger</a>
+                </div>
+
+                <!-- Pure Plus -->
+                <div class="product-card">
+                    <img src="pureplus.jpg" class="w-full h-32 object-contain mb-4">
+                    <h4 class="font-bold text-xs text-slate-900">Pure Plus Booster</h4>
+                    <a href="https://m.me/UpLiftClean" class="block text-center bg-[#006437] text-white text-[10px] py-3 mt-3 rounded-lg font-bold">Order via Messenger</a>
+                </div>
             </div>
-            <div class="product-card">
-                <img src="pureplus.jpg" class="w-full h-32 object-contain mb-4">
-                <h4 class="font-bold text-sm">Pure Plus Booster</h4>
-                <a href="https://www.paypal.com/..." class="block text-center bg-blue-600 text-white py-2 rounded-lg text-xs mt-2 font-bold">Buy Now</a>
+
+            <!-- Secret Sample Module -->
+            <div class="p-6 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+                <label class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Secret Sample Code</label>
+                <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-4 py-3 rounded-xl border border-slate-200 my-3">
+                <button onclick="processSecretSample()" class="w-full bg-slate-950 text-white text-xs py-3 rounded-xl font-bold hover:bg-black transition">Apply Secret Code</button>
             </div>
-        </div>
+
+            <!-- Packing Slip Generator -->
+            <div id="packer-receipt" class="hidden p-6 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                <h2 class="text-lg font-bold text-center mb-4">UpLiftClean Packing Slip</h2>
+                <button onclick="window.print()" class="w-full bg-slate-900 text-white text-xs py-3 rounded-xl font-bold">Print Slip for Package</button>
+            </div>
+        </main>
     </div>
+
+    <script>
+        const SECRET_KEY = "UPLIFT-SAMPLE-2026";
+        function processSecretSample() {
+            if (document.getElementById('secret-code').value === SECRET_KEY) {
+                document.getElementById('packer-receipt').classList.remove('hidden');
+                alert("Secret Code Accepted: Generating Packing Slip.");
+            } else {
+                alert("Invalid Code.");
+            }
+        }
+    </script>
 </body>
 </html>
