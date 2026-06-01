@@ -1,28 +1,82 @@
-<!-- Add this script to your existing page -->
-<script>
-    // Only shows the delete buttons when the admin code is typed
-    function revealAdminControls() {
-        const code = prompt("Enter Admin Code:");
-        if (code === "ADMIN2026") {
-            document.querySelectorAll('.admin-delete').forEach(el => el.classList.remove('hidden'));
-        }
-    }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpLiftClean | Official Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f4f4f5; }
+        .feature-btn { background: white; border: 1px solid #e4e4e7; border-radius: 12px; padding: 12px; font-size: 12px; font-weight: 600; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .product-card { background: white; border-radius: 20px; padding: 20px; border: 1px solid #e4e4e7; }
+    </style>
+</head>
+<body class="pb-12">
+    <div class="max-w-md mx-auto p-4">
+        <!-- Header -->
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold text-slate-900">UpLiftClean</h1>
+            <p class="text-sm text-slate-500">Natural Purity, Powerful Opportunity.</p>
+        </header>
 
-<!-- Update your Testimonial Section like this -->
-<div class="mt-10">
-    <h3 class="text-lg font-bold mb-4 text-slate-900" onclick="revealAdminControls()">Customer Reviews</h3>
-    <div id="testimonial-list" class="space-y-4">
-        
-        <div id="review-1" class="bg-white p-4 rounded-xl border border-slate-200">
-            <p class="text-xs text-slate-600 mb-2">"Absolutely love the laundry booster!"</p>
-            <p class="text-[10px] font-bold text-slate-400">— Sarah M.</p>
-            
-            <!-- This is now HIDDEN by default -->
-            <button onclick="document.getElementById('review-1').remove()" class="admin-delete hidden mt-3 text-[9px] text-red-500 hover:underline">
-                Remove Review
-            </button>
+        <!-- Utility Nav -->
+        <div class="grid grid-cols-2 gap-3 mb-8">
+            <a href="https://m.me/UpLiftClean" class="feature-btn block">Customer Service</a>
+            <button class="feature-btn">Search Products</button>
+            <button class="feature-btn">Track Order</button>
+            <button class="feature-btn">View My Cart</button>
         </div>
-        
+
+        <!-- Product Grid -->
+        <div class="space-y-4">
+            <!-- Complete Set -->
+            <div class="product-card">
+                <img src="thecompleteset.png" class="w-full h-48 object-cover rounded-xl mb-4">
+                <h4 class="font-bold text-sm">The Complete Set</h4>
+                <div class="mt-4">
+                    <!-- PASTE PAYPAL BUTTON 1 HERE -->
+                    <div class="paypal-placeholder bg-blue-600 text-white text-center py-3 rounded-lg text-xs font-bold">PayPal Buy Now (Set)</div>
+                </div>
+            </div>
+
+            <!-- Soap & Booster Grid -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="product-card">
+                    <img src="pureprime.jpg" class="w-full h-32 object-cover rounded-xl mb-4">
+                    <h4 class="font-bold text-xs">Pure Prime Soap</h4>
+                    <!-- PASTE PAYPAL BUTTON 2 HERE -->
+                    <div class="paypal-placeholder bg-blue-600 text-white text-center py-2 mt-3 rounded-lg text-[10px] font-bold">PayPal Buy Now</div>
+                </div>
+                <div class="product-card">
+                    <img src="pureplus.jpg" class="w-full h-32 object-cover rounded-xl mb-4">
+                    <h4 class="font-bold text-xs">Pure Plus Booster</h4>
+                    <!-- PASTE PAYPAL BUTTON 3 HERE -->
+                    <div class="paypal-placeholder bg-blue-600 text-white text-center py-2 mt-3 rounded-lg text-[10px] font-bold">PayPal Buy Now</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="mt-10">
+            <h3 class="text-lg font-bold mb-4 text-slate-900" onclick="revealAdmin()">Customer Reviews</h3>
+            <div id="testimonial-list" class="space-y-4">
+                <div id="review-1" class="bg-white p-4 rounded-xl border border-slate-200">
+                    <p class="text-xs text-slate-600 mb-2">"Absolutely love the laundry booster!"</p>
+                    <p class="text-[10px] font-bold text-slate-400">— Sarah M.</p>
+                    <button onclick="document.getElementById('review-1').remove()" class="admin-delete hidden mt-3 text-[9px] text-red-500 hover:underline">Remove Review</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <script>
+        function revealAdmin() {
+            const code = prompt("Enter Admin Code:");
+            if (code === "ADMIN2026") {
+                document.querySelectorAll('.admin-delete').forEach(el => el.classList.remove('hidden'));
+            }
+        }
+    </script>
+</body>
+</html>
