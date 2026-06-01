@@ -3,58 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UpLiftClean Storefront</title>
+    <title>UpLiftClean | Official Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .sharp-card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
+        .product-card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
     </style>
 </head>
-<body class="pb-12">
-
-    <!-- Header -->
-    <div class="max-w-md mx-auto pt-10 pb-6 px-6">
+<body class="pb-20">
+    <header class="max-w-md mx-auto pt-10 pb-6 px-6">
         <h1 class="text-3xl font-bold text-slate-950 tracking-tighter">UpLiftClean</h1>
-        <p class="text-sm text-slate-500 font-medium">Natural Purity, Powerful Opportunity.</p>
-    </div>
+        <p class="text-sm text-slate-500 font-medium">Natural Purity, Professional Grade.</p>
+    </header>
 
-    <!-- Product Grid -->
     <div class="max-w-md mx-auto px-4 space-y-6">
-        <!-- Main Product -->
-        <div class="sharp-card">
-            <img src="thecompleteset.png" class="w-full h-48 object-contain mb-6">
-            <h4 class="font-bold text-lg mb-4">The Complete Set</h4>
-            <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-sm py-4 rounded-xl font-bold hover:bg-emerald-900 transition-colors">Order via Messenger</a>
+        <div class="product-card">
+            <img src="thecompleteset.png" class="w-full h-48 object-contain mb-4">
+            <h4 class="font-bold text-lg">The Complete Set</h4>
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YOUR_BUTTON_ID" class="block text-center bg-blue-600 text-white py-3 rounded-xl font-bold mt-4">Pay with PayPal</a>
         </div>
 
-        <!-- Split Grid -->
         <div class="grid grid-cols-2 gap-4">
-            <div class="sharp-card">
+            <div class="product-card">
                 <img src="pureprime.jpg" class="w-full h-32 object-contain mb-4">
-                <h4 class="font-bold text-sm mb-4">Pure Prime Soap</h4>
-                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-[11px] py-3 rounded-lg font-bold">Order via Messenger</a>
+                <h4 class="font-bold text-sm">Pure Prime Soap</h4>
+                <a href="https://www.paypal.com/..." class="block text-center bg-blue-600 text-white py-2 rounded-lg text-xs mt-2 font-bold">Buy Now</a>
             </div>
-            <div class="sharp-card">
+            <div class="product-card">
                 <img src="pureplus.jpg" class="w-full h-32 object-contain mb-4">
-                <h4 class="font-bold text-sm mb-4">Pure Plus Booster</h4>
-                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-[11px] py-3 rounded-lg font-bold">Order via Messenger</a>
+                <h4 class="font-bold text-sm">Pure Plus Booster</h4>
+                <a href="https://www.paypal.com/..." class="block text-center bg-blue-600 text-white py-2 rounded-lg text-xs mt-2 font-bold">Buy Now</a>
             </div>
         </div>
-    </div>
-
-    <!-- Secret Checkout Module -->
-    <div class="max-w-md mx-auto mt-8 px-4 text-center">
-        <button onclick="document.getElementById('checkout-module').classList.toggle('hidden')" class="text-[10px] text-slate-400 uppercase tracking-widest font-bold underline">Apply Secret Sample Code</button>
-        <div id="checkout-module" class="hidden mt-6 p-6 bg-white rounded-2xl border border-slate-200">
-            <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-4 py-3 rounded-xl border border-slate-200 mb-3">
-            <button onclick="alert('Checking code...')" class="w-full bg-slate-950 text-white text-xs py-3 rounded-xl font-bold">Apply Secret Code</button>
-        </div>
-    </div>
-
-    <!-- Invisible Admin Access (Bottom Right) -->
-    <div class="fixed bottom-4 right-4 opacity-0 hover:opacity-100 transition-opacity">
-        <button onclick="window.print()" class="bg-slate-300 text-[8px] px-2 py-1 rounded">Admin</button>
     </div>
 </body>
 </html>
