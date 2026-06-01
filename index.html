@@ -5,35 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UpLiftClean Command Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-[#F6F6F6] p-4">
-    <div class="max-w-md mx-auto bg-white shadow-lg rounded-2xl p-4">
-        <h1 class="font-bold text-xl mb-4">UpLiftClean Command Center</h1>
-        
+<body class="bg-[#F6F6F6] text-slate-900 min-h-screen flex justify-center">
+
+    <div class="w-full max-w-md bg-white min-h-screen shadow-xl pb-24 px-4 pt-6">
+        <h1 class="font-bold text-2xl mb-6 tracking-tight">UpLiftClean Command Center</h1>
+
         <!-- Product Grid -->
-        <div class="grid grid-cols-1 gap-4">
+        <div class="grid grid-cols-2 gap-3 mb-8">
             <!-- Product 1 -->
-            <div class="border rounded-2xl p-3 bg-white">
-                <img src="1000052415.png" class="w-full h-32 object-contain bg-slate-50 rounded-lg">
-                <h4 class="font-bold text-sm mt-2">The Pure Power Set</h4>
-                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-emerald-700 text-white text-xs py-2 mt-2 rounded-lg">Order via Messenger</a>
+            <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm">
+                <div class="h-24 bg-slate-100 rounded-xl mb-2 flex items-center justify-center text-slate-400 text-xs">Image Loading...</div>
+                <h4 class="font-bold text-xs">The Pure Power Set</h4>
+                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-emerald-800 text-white text-[10px] py-2 mt-3 rounded-lg font-bold">Order via Messenger</a>
             </div>
-            <!-- Repeat similar blocks for other products using their specific filenames -->
+            <!-- Product 2 -->
+            <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm">
+                <div class="h-24 bg-slate-100 rounded-xl mb-2 flex items-center justify-center text-slate-400 text-xs">Image Loading...</div>
+                <h4 class="font-bold text-xs">Pure Prime Soap</h4>
+                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-emerald-800 text-white text-[10px] py-2 mt-3 rounded-lg font-bold">Order via Messenger</a>
+            </div>
         </div>
 
         <!-- Secret Sample Module -->
-        <div class="mt-6 p-4 bg-slate-50 rounded-xl border border-dashed border-slate-300">
-            <label class="text-[10px] font-bold text-slate-500 uppercase">Secret Sample Code</label>
-            <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-3 py-2 rounded-lg border my-2">
-            <button onclick="processSecretSample()" class="w-full bg-slate-900 text-white text-xs py-2 rounded-lg">Apply Secret Code</button>
+        <div class="p-4 bg-slate-50 rounded-xl border border-dashed border-slate-300">
+            <label class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block mb-2">Secret Sample Code</label>
+            <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-3 py-2 rounded-lg border border-slate-200 mb-2">
+            <button onclick="processSecretSample()" class="w-full bg-slate-900 text-white text-xs py-2 rounded-lg font-bold">Apply Secret Code</button>
         </div>
     </div>
 
     <script>
         function processSecretSample() {
             if (document.getElementById('secret-code').value === "UPLIFT-SAMPLE-2026") {
-                alert("Code Accepted. Redirecting to Packing Slip...");
-                // Logic to show receipt/packing slip
+                alert("Code Accepted. Accessing Packing Slip...");
             } else {
                 alert("Invalid Code.");
             }
