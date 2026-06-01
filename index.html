@@ -3,441 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UpLiftClean Official App</title>
-    <!-- Tailwind CSS for professional styling matching the UI design -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>UpLiftClean</title>
+    <!-- Tailwind CSS for modern style -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Smooth transitions between screens */
-        .app-screen {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out forwards;
-        }
-        .app-screen.active {
-            display: flex;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Custom UI aesthetics matching the generated screens */
-        .brand-gradient-btn {
-            background: linear-gradient(135deg, #115e59 0%, #0f766e 100%);
-        }
-        .brand-gradient-btn:hover {
-            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-stone-100 font-sans min-h-screen flex justify-center items-start antialiased">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Global App Shell Container (Simulating a clean mobile environment layout) -->
-    <div class="w-full max-w-md bg-white min-h-screen shadow-2xl relative flex flex-col justify-between overflow-hidden border-x border-gray-200">
+    <!-- SPLASH SCREEN / WELCOME -->
+    <div id="splash-screen" class="fixed inset-0 bg-gradient-to-b from-white to-emerald-50/30 z-50 flex flex-col items-center justify-between p-8 transition-all duration-500">
+        <div class="flex-1 flex flex-col items-center justify-center text-center max-w-sm px-4">
+            <!-- Your uploaded logo will display here -->
+            <div class="w-32 h-32 mb-8 bg-white rounded-2xl shadow-xl shadow-emerald-100/50 flex items-center justify-center p-4">
+                <img src="1780000331883.png" alt="UpLiftClean Logo" class="max-w-full max-h-full object-contain">
+            </div>
+            <h1 class="text-4xl font-bold text-emerald-900 tracking-tight mb-2">UpLiftClean</h1>
+            <p class="text-slate-500 font-medium">Premium Eco-Conscious Cleaning</p>
+        </div>
         
-        <!-- =================================================== -->
-        <!-- SCREEN 1: SPLASH/WELCOME SCREEN                    -->
-        <!-- =================================================== -->
-        <div id="screen-splash" class="app-screen active flex-col items-center justify-center p-8 text-center min-h-screen bg-[#faf9f6]">
-            <div class="my-auto flex flex-col items-center">
-                <!-- UpLiftClean Official Logo -->
-                <img src="1000048418.png" alt="UpLiftClean Logo" class="w-48 h-48 object-contain mb-6 drop-shadow-sm">
-                <h1 class="text-4xl font-extrabold text-[#0f766e] tracking-tight mb-2">UpLiftClean</h1>
-                <p class="text-gray-500 font-medium text-sm tracking-wide">Welcome to UpLiftClean</p>
-            </div>
-            <div class="w-full mt-auto pb-12">
-                <button onclick="navigateTo('screen-home')" class="w-full brand-gradient-btn text-white font-bold py-4 px-6 rounded-xl shadow-md text-lg tracking-wide transition-all transform active:scale-95">
-                    Enter the Clean
-                </button>
-            </div>
-        </div>
-
-        <!-- =================================================== -->
-        <!-- SCREEN 2: HOME / PRODUCT BROWSING DASHBOARD        -->
-        <!-- =================================================== -->
-        <div id="screen-home" class="app-screen flex-col flex-1 bg-[#fcfcfb]">
-            <!-- Header -->
-            <header class="bg-white border-b border-gray-100 px-4 py-4 sticky top-0 z-40 flex flex-col items-center gap-3 shadow-xs">
-                <div class="flex items-center gap-2">
-                    <img src="1000048418.png" alt="Logo" class="w-6 h-6 object-contain">
-                    <span class="text-lg font-bold text-gray-900 tracking-tight">UpLiftClean</span>
-                </div>
-                <!-- Search Bar functionality built right in -->
-                <div class="w-full relative">
-                    <input type="text" id="search-bar" oninput="handleSearch()" placeholder="Search Products... e.g., 'Eco-friendly Spray'" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#0f766e] focus:border-transparent transition-all">
-                    <span class="absolute left-3.5 top-3 text-gray-400 text-xs">🔍</span>
-                </div>
-            </header>
-
-            <!-- Scrollable Dashboard Content -->
-            <div class="flex-1 overflow-y-auto px-4 py-4 pb-24">
-                <!-- Categories Selector -->
-                <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Categories</h2>
-                <div class="grid grid-cols-4 gap-2 mb-6">
-                    <div class="bg-gray-50 border border-gray-100 rounded-xl p-2 flex flex-col items-center text-center cursor-pointer hover:bg-emerald-50 transition">
-                        <span class="text-xl mb-1">🧴</span>
-                        <span class="text-[10px] font-bold text-gray-700">All-Purpose</span>
-                    </div>
-                    <div class="bg-gray-50 border border-gray-100 rounded-xl p-2 flex flex-col items-center text-center cursor-pointer hover:bg-emerald-50 transition">
-                        <span class="text-xl mb-1">🧽</span>
-                        <span class="text-[10px] font-bold text-gray-700">Surface Specific</span>
-                    </div>
-                    <div class="bg-gray-50 border border-gray-100 rounded-xl p-2 flex flex-col items-center text-center cursor-pointer hover:bg-emerald-50 transition">
-                        <span class="text-xl mb-1">🌿</span>
-                        <span class="text-[10px] font-bold text-gray-700">Natural Ingredients</span>
-                    </div>
-                    <div class="bg-gray-50 border border-gray-100 rounded-xl p-2 flex flex-col items-center text-center cursor-pointer hover:bg-emerald-50 transition">
-                        <span class="text-xl mb-1">🍴</span>
-                        <span class="text-[10px] font-bold text-gray-700">Eco-Tools</span>
-                    </div>
-                </div>
-
-                <!-- Live Product Catalog Grid Layout -->
-                <div id="product-catalog-grid" class="grid grid-cols-2 gap-3">
-                    <!-- Javascript injection happens automatically here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- =================================================== -->
-        <!-- SCREEN 3: DETAILED PRODUCT DETAIL VIEW             -->
-        <!-- =================================================== -->
-        <div id="screen-detail" class="app-screen flex-col flex-1 bg-white">
-            <!-- Navigation Back Header -->
-            <header class="px-4 py-4 flex items-center justify-between border-b border-gray-100">
-                <button onclick="navigateTo('screen-home')" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-700 text-sm">‹</button>
-                <span class="text-sm font-bold text-gray-800">Product Details</span>
-                <div class="w-8 h-8 flex items-center justify-center text-base">📤</div>
-            </header>
-
-            <div id="product-detail-content" class="flex-1 overflow-y-auto p-4 flex flex-col">
-                <!-- Content generated dynamically on click -->
-            </div>
-        </div>
-
-        <!-- =================================================== -->
-        <!-- SCREEN 4: MY SHOPPING CART LISTING                 -->
-        <!-- =================================================== -->
-        <div id="screen-cart" class="app-screen flex-col flex-1 bg-[#fcfcfb]">
-            <header class="px-4 py-4 flex items-center justify-between border-b border-gray-100 bg-white">
-                <button onclick="navigateTo('screen-home')" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-700 text-sm">‹</button>
-                <span class="text-md font-bold text-gray-900">My Cart</span>
-                <div class="relative text-lg">🛒<span id="cart-badge-count" class="absolute -top-1.5 -right-1.5 bg-amber-500 text-white font-black text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span></div>
-            </header>
-
-            <div class="flex-1 overflow-y-auto p-4">
-                <div id="cart-items-list" class="space-y-3">
-                    <!-- Cart Items inject here dynamically -->
-                </div>
-
-                <div class="mt-6 pt-4 border-t border-gray-200 flex justify-between items-center px-1">
-                    <span class="text-sm font-bold text-gray-500">Grand Total</span>
-                    <span id="cart-grand-total" class="text-xl font-black text-gray-950">$0.00</span>
-                </div>
-
-                <div class="mt-8">
-                    <button onclick="navigateTo('screen-checkout')" class="w-full brand-gradient-btn text-white font-bold py-3.5 px-6 rounded-xl shadow shadow-emerald-900/20 text-center block text-sm tracking-wide">
-                        Hassle-Free Checkout 💳
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- =================================================== -->
-        <!-- SCREEN 5: SECURE APP CHECKOUT FORM                 -->
-        <!-- =================================================== -->
-        <div id="screen-checkout" class="app-screen flex-col flex-1 bg-[#fcfcfb]">
-            <header class="px-4 py-4 flex items-center justify-between border-b border-gray-100 bg-white">
-                <button onclick="navigateTo('screen-cart')" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-700 text-sm">‹</button>
-                <span class="text-md font-bold text-gray-900">Checkout</span>
-                <div class="w-8"></div>
-            </header>
-
-            <form onsubmit="handlePlaceOrder(event)" class="flex-1 overflow-y-auto p-4 space-y-5">
-                <!-- Delivery Info Fields -->
-                <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Delivery Info</h3>
-                    <div class="space-y-2">
-                        <input type="text" required placeholder="Full Name" class="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#0f766e]">
-                        <input type="text" required placeholder="Address" class="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#0f766e]">
-                        <input type="text" required placeholder="City & Postal Code" class="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#0f766e]">
-                    </div>
-                </div>
-
-                <!-- Payment Method Section -->
-                <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Payment Method</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <input type="radio" name="payment" checked class="text-[#0f766e] focus:ring-[#0f766e]">
-                                <span class="text-sm font-semibold text-gray-800">Credit / Debit Card</span>
-                            </div>
-                            <span class="text-xl">💳</span>
-                        </label>
-                        <label class="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <input type="radio" name="payment" class="text-[#0f766e] focus:ring-[#0f766e]">
-                                <span class="text-sm font-semibold text-gray-800">PayPal Express</span>
-                            </div>
-                            <span class="text-sm font-bold text-blue-600">PayPal</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Sticky Order Summary Placement -->
-                <div class="pt-4 border-t border-gray-200 flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-800">Place Order Total:</span>
-                    <span id="checkout-grand-total" class="text-lg font-black text-gray-950">$0.00</span>
-                </div>
-
-                <button type="submit" class="w-full brand-gradient-btn text-white font-bold py-3.5 px-6 rounded-xl shadow transition text-sm tracking-wide">
-                    Complete Global Order
-                </button>
-            </form>
-        </div>
-
-        <!-- =================================================== -->
-        <!-- SYSTEM NAVIGATION FOOTER TABS MAPPED INTERNALLY      -->
-        <!-- =================================================== -->
-        <nav id="app-footer-nav" class="absolute bottom-0 left-0 right-0 h-16 bg-white border-t border-gray-100 hidden grid-cols-4 items-center justify-center text-center z-40">
-            <button onclick="navigateTo('screen-home')" class="flex flex-col items-center justify-center text-gray-600 hover:text-[#0f766e]">
-                <span class="text-lg">🏠</span>
-                <span class="text-[10px] font-bold mt-0.5">Home</span>
-            </button>
-            <button onclick="navigateTo('screen-home')" class="flex flex-col items-center justify-center text-gray-400 hover:text-[#0f766e]">
-                <span class="text-lg">🔍</span>
-                <span class="text-[10px] font-bold mt-0.5">Search</span>
-            </button>
-            <button onclick="navigateTo('screen-cart')" class="flex flex-col items-center justify-center text-gray-600 hover:text-[#0f766e] relative">
-                <span class="text-lg">🛒</span>
-                <span class="text-[10px] font-bold mt-0.5">Cart</span>
-                <span id="footer-cart-count" class="absolute top-1 right-6 bg-[#0f766e] text-white text-[8px] font-bold px-1 rounded-full hidden">0</span>
-            </button>
-            <button onclick="alert('Profile Configuration View')" class="flex flex-col items-center justify-center text-gray-400 hover:text-[#0f766e]">
-                <span class="text-lg">👤</span>
-                <span class="text-[10px] font-bold mt-0.5">Profile</span>
-            </button>
-        </nav>
-
+        <button onclick="enterApp()" class="w-full max-w-sm bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-6 rounded-2xl shadow-lg shadow-emerald-600/20 transform active:scale-[0.98] transition-all text-lg cursor-pointer">
+            Enter the Clean
+        </button>
     </div>
 
-    <!-- =================================================== -->
-    <!-- APP MANAGEMENT CORE CONTROLLER JAVASCRIPT          -->
-    <!-- =================================================== -->
+    <!-- MAIN APP APP SECTION (Hidden on load) -->
+    <div id="main-app" class="hidden flex-1 flex flex-col max-w-md w-full mx-auto bg-white shadow-xl min-h-screen relative pb-20">
+        <!-- Sticky Header -->
+        <header class="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-4 flex items-center justify-between z-40">
+            <div class="flex items-center gap-3">
+                <img src="1780000331883.png" alt="UpLiftClean Logo" class="w-8 h-8 object-contain">
+                <span class="font-bold text-xl text-slate-900">UpLiftClean</span>
+            </div>
+            <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-100">Eco-Friendly</span>
+        </header>
+
+        <!-- Dynamic Content Body -->
+        <main class="flex-1 p-6">
+            <!-- Home Section -->
+            <section id="sec-home" class="space-y-6">
+                <div class="bg-gradient-to-br from-emerald-600 to-teal-700 text-white p-6 rounded-2xl shadow-xl shadow-emerald-900/10 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-bold mb-2">A Healthier Home,<br>A Cleaner Planet.</h2>
+                        <p class="text-emerald-100 text-sm max-w-[80%] mb-4">Experience a sparkling clean spaces using 100% non-toxic, plant-based products.</p>
+                        <button onclick="switchTab('booking')" class="bg-white text-emerald-700 font-semibold px-4 py-2 rounded-xl text-sm shadow-md cursor-pointer">Book a Clean</button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Our Core Services</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="border border-slate-100 p-4 rounded-xl bg-white hover:border-emerald-200 transition-all">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold mb-3">🏠</div>
+                            <h4 class="font-semibold text-sm text-slate-900 mb-1">Residential</h4>
+                            <p class="text-xs text-slate-400">Deep home detailing</p>
+                        </div>
+                        <div class="border border-slate-100 p-4 rounded-xl bg-white hover:border-emerald-200 transition-all">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold mb-3">🏢</div>
+                            <h4 class="font-semibold text-sm text-slate-900 mb-1">Commercial</h4>
+                            <p class="text-xs text-slate-400">Office & retail spaces</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Booking Section -->
+            <section id="sec-booking" class="hidden space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">Schedule Your Service</h2>
+                    <p class="text-slate-400 text-sm">Tell us about your space and preferences.</p>
+                </div>
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Booking submitted successfully! Our team will contact you shortly.');">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Service Type</label>
+                        <select class="w-full border border-slate-200 rounded-xl p-3 bg-white text-sm focus:outline-emerald-500">
+                            <option>Standard Eco-Clean</option>
+                            <option>Deep Detail Clean</option>
+                            <option>Move In / Move Out</option>
+                            <option>Commercial Space Clean</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Preferred Date</label>
+                            <input type="date" class="w-full border border-slate-200 rounded-xl p-3 bg-white text-sm focus:outline-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Time Slot</label>
+                            <select class="w-full border border-slate-200 rounded-xl p-3 bg-white text-sm focus:outline-emerald-500">
+                                <option>Morning (8AM - 12PM)</option>
+                                <option>Afternoon (12PM - 4PM)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Contact Details</label>
+                        <input type="text" placeholder="Full Name" class="w-full border border-slate-200 rounded-xl p-3 text-sm mb-2 focus:outline-emerald-500">
+                        <input type="tel" placeholder="Phone Number" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:outline-emerald-500">
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition-all shadow-md cursor-pointer mt-2">Confirm Request</button>
+                </form>
+            </section>
+
+            <!-- About Section -->
+            <section id="sec-about" class="hidden space-y-4">
+                <h2 class="text-xl font-bold text-slate-900">About UpLiftClean</h2>
+                <p class="text-slate-600 text-sm leading-relaxed">We believe a clean home shouldn't come at the cost of a healthy planet. Our mission is to provide premium, meticulous cleaning services using exclusively eco-friendly, biodegradable products that are completely safe for your children, your pets, and the environment.</p>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wider mb-1">Our Promise</h4>
+                    <p class="text-slate-700 text-sm">✨ 100% Plant-Based Formulas<br>🌳 Eco-Conscious Carbon Footprint<br>🔒 Fully Insured & Vetted Professionals</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Premium Bottom Navigation Bar -->
+        <nav class="absolute bottom-0 left-0 right-0 h-16 bg-white/90 backdrop-blur-md border-t border-slate-100 flex items-center justify-around px-4 z-40">
+            <button onclick="switchTab('home')" id="nav-home" class="flex flex-col items-center gap-1 text-emerald-600 font-semibold text-xs transition-all cursor-pointer">
+                <span class="text-lg">🏠</span> Home
+            </button>
+            <button onclick="switchTab('booking')" id="nav-booking" class="flex flex-col items-center gap-1 text-slate-400 font-medium text-xs transition-all cursor-pointer">
+                <span class="text-lg">📅</span> Book
+            </button>
+            <button onclick="switchTab('about')" id="nav-about" class="flex flex-col items-center gap-1 text-slate-400 font-medium text-xs transition-all cursor-pointer">
+                <span class="text-lg">🌱</span> About
+            </button>
+        </nav>
+    </div>
+
+    <!-- APP INTERACTIVE SCRIPT -->
     <script>
-        // MASTER APP INVENTORY MANAGER - EASILY ADAPT PRODUCTS HERE
-        const products = [
-            {
-                id: "p1",
-                name: "UpLift Surface Spray - Natural Lemon",
-                price: 12.99,
-                rating: "4.8 ★",
-                desc: "UpLift Surface Spray - Natural connection cleaner consisting of eco-friendly and deeply powerful ingredients to cleanly rid surfaces of stains, oils, and soils natively with natural scent aeration.",
-                img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=300&q=80"
-            },
-            {
-                id: "p2",
-                name: "Biodegradable Scrub Brushes",
-                price: 12.99,
-                rating: "4.8 ★",
-                desc: "Premium, organically derived handheld scrubbing wood brushes designed to clear tough kitchen grit without shedding microscopic synthetic compounds.",
-                img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=300&q=80"
-            },
-            {
-                id: "p3",
-                name: "UpLift Eco-Refill Kit",
-                price: 24.99,
-                rating: "4.9 ★",
-                desc: "Highly concentrated professional system formulas tailored to extend your standard UpLift spray handles for ongoing multi-year application uses.",
-                img: "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=300&q=80"
-            }
-        ];
+        function enterApp() {
+            const splash = document.getElementById('splash-screen');
+            splash.classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('main-app').classList.remove('hidden');
+            setTimeout(() => splash.remove(), 500);
+        }
 
-        // Central Shopping State Management Tracker
-        let cart = {};
-
-        // Application Screen Navigation Matrix
-        function navigateTo(screenId) {
-            // Hide all reactive screen overlays
-            document.querySelectorAll('.app-screen').forEach(screen => {
-                screen.classList.remove('active');
+        function switchTab(tabId) {
+            // Hide all sections
+            document.getElementById('sec-home').classList.add('hidden');
+            document.getElementById('sec-booking').classList.add('hidden');
+            document.getElementById('sec-about').classList.add('hidden');
+            
+            // Reset nav colors
+            const tabs = ['home', 'booking', 'about'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`nav-${t}`);
+                btn.classList.remove('text-emerald-600', 'font-semibold');
+                btn.classList.add('text-slate-400', 'font-medium');
             });
-            
-            // Activate current viewport requested
-            document.getElementById(screenId).classList.add('active');
 
-            // Hide or Show Global Application Footer Navigation Bar dynamically
-            const footer = document.getElementById('app-footer-nav');
-            if (screenId === 'screen-splash') {
-                footer.style.display = 'none';
-            } else {
-                footer.style.display = 'grid';
-            }
-
-            // Sync structural parameters on cart interactions
-            if (screenId === 'screen-cart') { renderCartItems(); }
-            if (screenId === 'screen-checkout') { syncCheckoutTotals(); }
+            // Show active section & highlight active nav
+            document.getElementById(`sec-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            activeBtn.classList.remove('text-slate-400', 'font-medium');
+            activeBtn.classList.add('text-emerald-600', 'font-semibold');
         }
-
-        // Render Home Product Catalog Interface Grid
-        function buildProductGrid(itemsList) {
-            const catalogContainer = document.getElementById('product-catalog-grid');
-            if(itemsList.length === 0) {
-                catalogContainer.innerHTML = `<p class="col-span-2 text-center text-gray-400 text-xs py-8">No specific cleaning supplies match your search...</p>`;
-                return;
-            }
-
-            catalogContainer.innerHTML = itemsList.map(item => `
-                <div class="bg-white border border-gray-100 rounded-2xl p-3 flex flex-col justify-between shadow-xs hover:border-gray-200 transition">
-                    <div onclick="openProductDetail('${item.id}')" class="cursor-pointer">
-                        <img src="${item.img}" alt="${item.name}" class="w-full h-32 object-cover rounded-xl bg-gray-50 mb-3">
-                        <h3 class="text-xs font-bold text-gray-800 line-clamp-2 leading-snug">${item.name}</h3>
-                        <p class="text-[10px] text-amber-500 font-bold mt-1">${item.rating}</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-3">
-                        <span class="text-sm font-black text-gray-950">$${item.price.toFixed(2)}</span>
-                        <button onclick="addToCart('${item.id}')" class="w-7 h-7 rounded-lg bg-teal-800 text-white font-bold flex items-center justify-center text-xs hover:bg-teal-900 transition-colors">+</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Filter Catalog via Realtime Input Search Element
-        function handleSearch() {
-            const criteria = document.getElementById('search-bar').value.toLowerCase();
-            const matchingProducts = products.filter(p => p.name.toLowerCase().includes(criteria) || p.desc.toLowerCase().includes(criteria));
-            buildProductGrid(matchingProducts);
-        }
-
-        // Open Individual Deep Item Specs Screen UI
-        function openProductDetail(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            const detailPanel = document.getElementById('product-detail-content');
-            detailPanel.innerHTML = `
-                <img src="${product.img}" alt="${product.name}" class="w-full h-64 object-cover rounded-2xl bg-gray-50 mb-4 shadow-sm">
-                
-                <div class="flex items-center justify-between mb-2">
-                    <h2 class="text-xl font-extrabold text-gray-900 leading-tight">${product.name}</h2>
-                    <span class="text-sm text-amber-500 font-bold flex items-center gap-1">★ ${product.rating.replace('★','')}</span>
-                </div>
-
-                <p class="text-xl font-black text-teal-800 mb-4">$${product.price.toFixed(2)}</p>
-
-                <div class="flex gap-4 mb-6 text-center border-y border-gray-100 py-3">
-                    <div class="flex-1"><p class="text-xs font-bold text-gray-800">Natural</p><p class="text-[10px] text-gray-400">Ingredients</p></div>
-                    <div class="flex-1 border-x border-gray-100"><p class="text-xs font-bold text-gray-800">Cruelty-Free</p><p class="text-[10px] text-gray-400">Certified</p></div>
-                    <div class="flex-1"><p class="text-xs font-bold text-gray-800">Recyclable</p><p class="text-[10px] text-gray-400">Bottle System</p></div>
-                </div>
-
-                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Description</h3>
-                <p class="text-xs text-gray-600 leading-relaxed mb-8">${product.desc}</p>
-                
-                <div class="mt-auto flex gap-3">
-                    <button onclick="addToCart('${product.id}'); navigateTo('screen-cart');" class="flex-1 bg-gray-100 text-gray-800 font-bold py-3 px-4 rounded-xl text-xs hover:bg-gray-200 transition">
-                        Add to Cart
-                    </button>
-                    <button onclick="addToCart('${product.id}'); navigateTo('screen-checkout');" class="flex-1 brand-gradient-btn text-white font-bold py-3 px-4 rounded-xl text-xs shadow transition">
-                        Buy Now
-                    </button>
-                </div>
-            `;
-            navigateTo('screen-detail');
-        }
-
-        // Cart Interaction Logic Mechanics
-        function addToCart(productId) {
-            cart[productId] = (cart[productId] || 0) + 1;
-            refreshCartStateBadges();
-        }
-
-        function alterCartQuantity(productId, change) {
-            if (!cart[productId]) return;
-            cart[productId] += change;
-            if (cart[productId] <= 0) delete cart[productId];
-            
-            refreshCartStateBadges();
-            renderCartItems();
-        }
-
-        function refreshCartStateBadges() {
-            const totalUnits = Object.values(cart).reduce((a, b) => a + b, 0);
-            
-            const badge = document.getElementById('cart-badge-count');
-            const footerBadge = document.getElementById('footer-cart-count');
-            
-            badge.innerText = totalUnits;
-            footerBadge.innerText = totalUnits;
-
-            if(totalUnits > 0) {
-                footerBadge.classList.remove('hidden');
-            } else {
-                footerBadge.classList.add('hidden');
-            }
-        }
-
-        function calculateCartFinancialTotal() {
-            let runningTotal = 0;
-            Object.keys(cart).forEach(id => {
-                const referenceProduct = products.find(p => p.id === id);
-                if (referenceProduct) {
-                    runningTotal += referenceProduct.price * cart[id];
-                }
-            });
-            return runningTotal.toFixed(2);
-        }
-
-        function renderCartItems() {
-            const cartContainer = document.getElementById('cart-items-list');
-            const targetTotalString = calculateCartFinancialTotal();
-            
-            document.getElementById('cart-grand-total').innerText = `$${targetTotalString}`;
-
-            const activeCartKeys = Object.keys(cart);
-            if (activeCartKeys.length === 0) {
-                cartContainer.innerHTML = `<p class="text-center text-gray-400 text-xs py-12">Your shopping cart is currently empty.</p>`;
-                return;
-            }
-
-            cartContainer.innerHTML = activeCartKeys.map(id => {
-                const p = products.find(prod => prod.id === id);
-                return `
-                    <div class="bg-white border border-gray-100 rounded-xl p-3 flex items-center justify-between shadow-xs">
-                        <div class="flex items-center gap-3">
-                            <img src="${p.img}" class="w-12 h-12 object-cover rounded-lg bg-gray-50">
-                            <div>
-                                <h4 class="text-xs font-bold text-gray-800 line-clamp-1">${p.name}</h4>
-                                <p class="text-xs text-teal-800 font-extrabold mt-0.5">$${p.price.toFixed(2)}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="alterCartQuantity('${p.id}', -1)" class="w-6 h-6 rounded bg-gray-100 text-gray-600 flex items-center justify-center font-bold text-xs">-</button>
-                            <span class="text-xs font-bold text-gray-800 w-4 text-center">${cart[id]}</span>
-                            <button onclick="alterCartQuantity('${p.id}', 1)" class="w-6 h-6 rounded bg-gray-100 text-gray-600 flex items-center justify-center font-bold text-xs">+</button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function syncCheckoutTotals() {
-            const checkoutTotal = calculateCartFinancialTotal();
-            document.getElementById('checkout-grand-total').innerText = `$${checkoutTotal}`;
-        }
-
-        // Handle Complete Secure Submission Flow Safely
-        function handlePlaceOrder(event) {
-            event.preventDefault();
-            alert("Thank you for your order! UpLiftClean secure checkout processing portal initialized successfully.");
-            
-            // Empty parameters state clear values back to zero default baseline
-            cart = {};
-            refreshCartStateBadges();
-            navigateTo('screen-home');
-        }
-
-        // Initialize Core View Configuration on Start Up Instance
-        buildProductGrid(products);
     </script>
 </body>
 </html>
