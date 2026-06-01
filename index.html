@@ -7,66 +7,54 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f6f6f6; }
-        .product-card { background: white; border-radius: 24px; padding: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sharp-card { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
     </style>
 </head>
-<body class="pb-20">
+<body class="pb-12">
 
     <!-- Header -->
-    <div class="max-w-md mx-auto p-6">
-        <h1 class="text-2xl font-bold text-slate-900 tracking-tight">UpLiftClean</h1>
-        <p class="text-sm text-slate-500">Natural Purity, Powerful Opportunity.</p>
+    <div class="max-w-md mx-auto pt-10 pb-6 px-6">
+        <h1 class="text-3xl font-bold text-slate-950 tracking-tighter">UpLiftClean</h1>
+        <p class="text-sm text-slate-500 font-medium">Natural Purity, Powerful Opportunity.</p>
     </div>
 
     <!-- Product Grid -->
-    <div class="max-w-md mx-auto px-4 space-y-4">
-        <!-- 1. The Complete Set (Full Width) -->
-        <div class="product-card">
-            <img src="thecompleteset.png" class="w-full object-cover rounded-xl mb-4">
-            <h4 class="font-bold text-sm mb-4">The Complete Set</h4>
-            <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-xs py-4 rounded-xl font-bold">Order via Messenger</a>
+    <div class="max-w-md mx-auto px-4 space-y-6">
+        <!-- Main Product -->
+        <div class="sharp-card">
+            <img src="thecompleteset.png" class="w-full h-48 object-contain mb-6">
+            <h4 class="font-bold text-lg mb-4">The Complete Set</h4>
+            <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-sm py-4 rounded-xl font-bold hover:bg-emerald-900 transition-colors">Order via Messenger</a>
         </div>
 
-        <!-- 2 & 3. Split Grid -->
+        <!-- Split Grid -->
         <div class="grid grid-cols-2 gap-4">
-            <div class="product-card">
-                <img src="pureprime.jpg" class="w-full object-cover rounded-xl mb-4">
-                <h4 class="font-bold text-xs mb-4">Pure Prime Soap</h4>
-                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-[10px] py-3 rounded-lg font-bold">Order via Messenger</a>
+            <div class="sharp-card">
+                <img src="pureprime.jpg" class="w-full h-32 object-contain mb-4">
+                <h4 class="font-bold text-sm mb-4">Pure Prime Soap</h4>
+                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-[11px] py-3 rounded-lg font-bold">Order via Messenger</a>
             </div>
-            <div class="product-card">
-                <img src="pureplus.jpg" class="w-full object-cover rounded-xl mb-4">
-                <h4 class="font-bold text-xs mb-4">Pure Plus Booster</h4>
-                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-[10px] py-3 rounded-lg font-bold">Order via Messenger</a>
+            <div class="sharp-card">
+                <img src="pureplus.jpg" class="w-full h-32 object-contain mb-4">
+                <h4 class="font-bold text-sm mb-4">Pure Plus Booster</h4>
+                <a href="https://m.me/upliftcleanofficial" class="block text-center bg-[#006437] text-white text-[11px] py-3 rounded-lg font-bold">Order via Messenger</a>
             </div>
         </div>
     </div>
 
-    <!-- Hidden Admin & Secret Sample Module -->
-    <div class="max-w-md mx-auto mt-8 px-4">
-        <div class="p-6 bg-white rounded-2xl border border-dashed border-slate-300">
-            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-2">Secret Sample Code</label>
+    <!-- Secret Checkout Module -->
+    <div class="max-w-md mx-auto mt-8 px-4 text-center">
+        <button onclick="document.getElementById('checkout-module').classList.toggle('hidden')" class="text-[10px] text-slate-400 uppercase tracking-widest font-bold underline">Apply Secret Sample Code</button>
+        <div id="checkout-module" class="hidden mt-6 p-6 bg-white rounded-2xl border border-slate-200">
             <input type="text" id="secret-code" placeholder="Enter Code" class="w-full text-sm px-4 py-3 rounded-xl border border-slate-200 mb-3">
-            <button onclick="processSecretSample()" class="w-full bg-slate-900 text-white text-xs py-3 rounded-xl font-bold">Apply Secret Code</button>
+            <button onclick="alert('Checking code...')" class="w-full bg-slate-950 text-white text-xs py-3 rounded-xl font-bold">Apply Secret Code</button>
         </div>
     </div>
 
-    <!-- Hidden Admin Entry -->
+    <!-- Invisible Admin Access (Bottom Right) -->
     <div class="fixed bottom-4 right-4 opacity-0 hover:opacity-100 transition-opacity">
-        <button onclick="document.getElementById('admin-panel').classList.remove('hidden')" class="bg-slate-800 text-white text-[8px] px-2 py-1 rounded">Admin</button>
+        <button onclick="window.print()" class="bg-slate-300 text-[8px] px-2 py-1 rounded">Admin</button>
     </div>
-
-    <div id="admin-panel" class="hidden fixed inset-0 bg-white p-8 z-50">
-        <h2 class="text-xl font-bold mb-4">Command Center</h2>
-        <button onclick="window.print()" class="bg-black text-white px-4 py-2 rounded">Print Packing Slip</button>
-    </div>
-
-    <script>
-        function processSecretSample() {
-            const code = document.getElementById('secret-code').value;
-            if (code === "UPLIFT-SAMPLE") { alert("Access Granted"); } else { alert("Invalid Code"); }
-        }
-    </script>
 </body>
 </html>
