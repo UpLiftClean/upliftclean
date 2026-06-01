@@ -59,7 +59,7 @@
 
         <!-- Reviews -->
         <div class="mt-10">
-            <h3 class="text-lg font-bold mb-4 text-slate-900" onclick="revealAdmin()">Customer Reviews</h3>
+            <h3 class="text-lg font-bold mb-4 text-slate-900">Customer Reviews</h3>
             <div id="testimonial-list" class="space-y-4">
                 <div id="review-1" class="bg-white p-4 rounded-xl border border-slate-200">
                     <p class="text-xs text-slate-600 mb-2">"Absolutely love the laundry booster!"</p>
@@ -69,6 +69,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Secret Trigger -->
+    <div onclick="revealAdmin()" class="fixed bottom-4 right-4 w-6 h-6 bg-slate-900 rounded-full opacity-20 cursor-pointer"></div>
 
     <script>
         function revealAdmin() {
