@@ -35,7 +35,7 @@
         </div>
     </header> 
 
-    <!-- Main Product View -->
+    <!-- Main Content -->
     <main id="product-view" class="flex-1 overflow-y-auto">
         <div class="p-4">
             <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
@@ -81,7 +81,7 @@
 
     <!-- Product Detail View -->
     <div id="product-detail-view" class="hidden flex-1 p-4">
-        <button onclick="toggleView('product-view')" class="text-emerald-800 font-bold mb-4">← Back</button>
+        <button onclick="window.history.back()" class="text-emerald-800 font-bold mb-4">← Back</button>
         <div id="detail-content"></div>
     </div>
 
@@ -117,6 +117,10 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     updateCartUI();
 
+    window.onpopstate = function(event) {
+        toggleView('product-view');
+    };
+
     const productData = {
         'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation.' },
         'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap.' },
@@ -143,6 +147,7 @@
 
     function showProductDetail(id) {
         const p = productData[id];
+        window.history.pushState({view: 'detail'}, '', '#detail');
         document.getElementById('detail-content').innerHTML = `
             <img src="${p.img}" class="w-full h-64 object-contain mb-6">
             <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
@@ -156,6 +161,7 @@
     }
 
     function toggleView(viewId) {
+        closeModal();
         document.getElementById('product-view').classList.add('hidden');
         document.getElementById('product-detail-view').classList.add('hidden');
         document.getElementById('cart-view').classList.add('hidden');
