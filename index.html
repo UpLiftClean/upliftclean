@@ -30,54 +30,41 @@
             </button>
         </div>
         <div class="relative">
-            <input type="text" placeholder="Search organic laundry essentials..." class="w-full bg-slate-100 text-sm pl-10 pr-4 py-3 rounded-full border border-transparent focus:bg-white focus:border-slate-300 outline-none transition-all">
+            <input type="text" id="search-input" onkeypress="handleSearch(event)" placeholder="Search organic laundry essentials..." class="w-full bg-slate-100 text-sm pl-10 pr-4 py-3 rounded-full border border-transparent focus:bg-white focus:border-slate-300 outline-none transition-all">
             <span class="absolute left-3.5 top-3.5 text-slate-400">🔍</span>
         </div>
     </header> 
 
-    <!-- Main Product View -->
-    <main id="product-view" class="flex-1 overflow-y-auto">
-        <div class="p-4">
-            <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
-                <h2 class="text-xl font-bold mb-1">Organic & 100% Natural Plant-Based</h2>
-                <p class="text-emerald-100 text-xs mb-4">Upgrade to pure, botanical laundry rituals.</p>
-            </div>
-        </div> 
-
-        <div class="px-4 pb-6">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
-            <div class="grid grid-cols-4 gap-2">
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🌿</div><span class="text-[9px] font-semibold">Pure Set</span></div>
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🧼</div><span class="text-[9px] font-semibold">Soap</span></div>
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] font-semibold">Booster</span></div>
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] font-semibold">Bundles</span></div>
-            </div>
-        </div> 
-
-        <div class="px-4">
-            <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
-            <div class="grid grid-cols-2 gap-3"> 
-                <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-                    <img src="thecompleteset.png" onclick="showProductDetail('set')" class="h-32 object-contain mb-3 cursor-pointer">
-                    <h4 class="font-bold text-xs">The Pure Power Set</h4>
-                    <div class="font-bold text-sm my-2">$7.99 USD</div>
-                    <button onclick="confirmAddToCart('set')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
-                </div> 
-                <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-                    <img src="pureprime.jpg" onclick="showProductDetail('soap')" class="h-32 object-contain mb-3 cursor-pointer">
-                    <h4 class="font-bold text-xs">Pure Prime Saponin Soap</h4>
-                    <div class="font-bold text-sm my-2">$4.99 USD</div>
-                    <button onclick="confirmAddToCart('soap')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
-                </div> 
-                <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-                    <img src="pureplus.jpg" onclick="showProductDetail('booster')" class="h-32 object-contain mb-3 cursor-pointer">
-                    <h4 class="font-bold text-xs">Pure Plus Laundry Booster</h4>
-                    <div class="font-bold text-sm my-2">$4.49 USD</div>
-                    <button onclick="confirmAddToCart('booster')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+    <!-- Main View (Home / Search Results) -->
+    <main id="main-view" class="flex-1 overflow-y-auto">
+        <div id="home-content">
+            <div class="p-4">
+                <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
+                    <h2 class="text-xl font-bold mb-1">Organic & 100% Natural Plant-Based</h2>
+                    <p class="text-emerald-100 text-xs mb-4">Upgrade to pure, botanical laundry rituals.</p>
+                </div>
+            </div> 
+            <div class="px-4 pb-6">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
+                <div class="grid grid-cols-4 gap-2">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🌿</div><span class="text-[9px] font-semibold">Pure Set</span></div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🧼</div><span class="text-[9px] font-semibold">Soap</span></div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] font-semibold">Booster</span></div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] font-semibold">Bundles</span></div>
                 </div>
             </div>
+            <div class="px-4">
+                <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
+                <div id="product-grid" class="grid grid-cols-2 gap-3"></div>
+            </div>
         </div>
-    </main> 
+        
+        <div id="search-results" class="hidden p-4">
+            <h2 id="search-title" class="font-bold text-lg mb-4"></h2>
+            <div id="search-list" class="space-y-4"></div>
+            <button onclick="clearSearch()" class="mt-6 text-emerald-800 underline text-sm font-bold">← Back to Home</button>
+        </div>
+    </main>
 
     <!-- Product Detail View -->
     <div id="product-detail-view" class="hidden flex-1 p-4">
@@ -115,17 +102,79 @@
 
 <script>
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    updateCartUI();
-
-    window.onpopstate = function(event) {
-        toggleView('product-view');
-    };
-
     const productData = {
         'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation.' },
         'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap.' },
         'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster.' }
     };
+
+    window.onpopstate = function() {
+        // Return to home state
+        document.getElementById('product-detail-view').classList.add('hidden');
+        document.getElementById('cart-view').classList.add('hidden');
+        document.getElementById('main-view').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        closeModal();
+    };
+
+    function renderHome() {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = Object.keys(productData).map(id => `
+            <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
+                <img src="${productData[id].img}" onclick="showProductDetail('${id}')" class="h-32 object-contain mb-3 cursor-pointer">
+                <h4 class="font-bold text-xs">${productData[id].name}</h4>
+                <div class="font-bold text-sm my-2">$${productData[id].price.toFixed(2)} USD</div>
+                <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+            </div>
+        `).join('');
+    }
+
+    function handleSearch(event) {
+        if (event.key === 'Enter') {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const results = Object.keys(productData).filter(id => productData[id].name.toLowerCase().includes(query));
+            document.getElementById('home-content').classList.add('hidden');
+            document.getElementById('search-results').classList.remove('hidden');
+            document.getElementById('search-title').innerText = `Results for "${query}"`;
+            document.getElementById('search-list').innerHTML = results.map(id => `
+                <div class="flex gap-4 p-2 border-b">
+                    <img src="${productData[id].img}" class="w-20 h-20 object-contain cursor-pointer" onclick="showProductDetail('${id}')">
+                    <div>
+                        <h4 class="font-bold text-sm">${productData[id].name}</h4>
+                        <p class="font-bold text-emerald-700">$${productData[id].price.toFixed(2)}</p>
+                        <button onclick="confirmAddToCart('${id}')" class="mt-2 text-[10px] bg-slate-900 text-white px-4 py-1 rounded-lg">Add</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    function clearSearch() {
+        document.getElementById('search-input').value = '';
+        document.getElementById('home-content').classList.remove('hidden');
+        document.getElementById('search-results').classList.add('hidden');
+    }
+
+    function showProductDetail(id) {
+        const p = productData[id];
+        window.history.pushState({view: 'detail'}, '', '#detail');
+        document.getElementById('detail-content').innerHTML = `
+            <img src="${p.img}" class="w-full h-64 object-contain mb-6">
+            <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">${p.desc}</p>
+            <div class="font-bold text-xl mb-6">$${p.price.toFixed(2)} USD</div>
+            <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
+        `;
+        document.getElementById('main-view').classList.add('hidden');
+        document.getElementById('product-detail-view').classList.remove('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+    }
+
+    function openCart() {
+        window.history.pushState({view: 'cart'}, '', '#cart');
+        document.getElementById('main-view').classList.add('hidden');
+        document.getElementById('cart-view').classList.remove('hidden');
+    }
 
     function confirmAddToCart(id) {
         const p = productData[id];
@@ -144,40 +193,6 @@
     }
 
     function closeModal() { document.getElementById('confirm-modal').classList.add('hidden'); }
-
-    function showProductDetail(id) {
-        const p = productData[id];
-        window.history.pushState({view: 'detail'}, '', '#detail');
-        document.getElementById('detail-content').innerHTML = `
-            <img src="${p.img}" class="w-full h-64 object-contain mb-6">
-            <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
-            <p class="text-slate-600 text-sm mb-6 leading-relaxed">${p.desc}</p>
-            <div class="font-bold text-xl mb-6">$${p.price.toFixed(2)} USD</div>
-            <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
-        `;
-        document.getElementById('product-view').classList.add('hidden');
-        document.getElementById('product-detail-view').classList.remove('hidden');
-        document.getElementById('main-header').classList.add('hidden');
-    }
-
-    function openCart() {
-        window.history.pushState({view: 'cart'}, '', '#cart');
-        toggleView('cart-view');
-    }
-
-    function toggleView(viewId) {
-        closeModal();
-        document.getElementById('product-view').classList.add('hidden');
-        document.getElementById('product-detail-view').classList.add('hidden');
-        document.getElementById('cart-view').classList.add('hidden');
-        document.getElementById('main-header').classList.remove('hidden');
-        
-        if (viewId === 'product-detail-view') {
-            document.getElementById('main-header').classList.add('hidden');
-        }
-        
-        document.getElementById(viewId).classList.remove('hidden');
-    }
 
     function saveAndRefresh() {
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -200,6 +215,9 @@
         cart = cart.filter(item => item.id !== id);
         saveAndRefresh();
     }
+
+    renderHome();
+    updateCartUI();
 </script>
 </body>
 </html>
