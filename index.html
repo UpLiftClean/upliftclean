@@ -44,48 +44,44 @@
             </div>
         </div> 
 
-        <div class="px-4 pb-6">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
-            <div class="grid grid-cols-4 gap-2">
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🌿</div><span class="text-[9px] font-semibold">Pure Set</span></div>
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🧼</div><span class="text-[9px] font-semibold">Soap</span></div>
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] font-semibold">Booster</span></div>
-                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] font-semibold">Bundles</span></div>
-            </div>
-        </div> 
-
         <div class="px-4">
             <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
             <div class="grid grid-cols-2 gap-3"> 
-                <!-- Product 1 -->
                 <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
                     <img src="thecompleteset.png" onclick="showProductDetail('set')" class="h-32 object-contain mb-3 cursor-pointer">
                     <h4 class="font-bold text-xs">The Pure Power Set</h4>
                     <div class="font-bold text-sm my-2">$7.99 USD</div>
-                    <button onclick="addToCart('The Pure Power Set', 7.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+                    <button onclick="confirmAddToCart('set')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                 </div> 
-                <!-- Product 2 -->
                 <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
                     <img src="pureprime.jpg" onclick="showProductDetail('soap')" class="h-32 object-contain mb-3 cursor-pointer">
                     <h4 class="font-bold text-xs">Pure Prime Saponin Soap</h4>
                     <div class="font-bold text-sm my-2">$4.99 USD</div>
-                    <button onclick="addToCart('Pure Prime Soap', 4.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+                    <button onclick="confirmAddToCart('soap')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                 </div> 
-                <!-- Product 3 -->
                 <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
                     <img src="pureplus.jpg" onclick="showProductDetail('booster')" class="h-32 object-contain mb-3 cursor-pointer">
                     <h4 class="font-bold text-xs">Pure Plus Laundry Booster</h4>
                     <div class="font-bold text-sm my-2">$4.49 USD</div>
-                    <button onclick="addToCart('Pure Plus Booster', 4.49)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+                    <button onclick="confirmAddToCart('booster')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                 </div>
             </div>
         </div>
     </main> 
 
-    <!-- Dynamic Product Detail View -->
+    <!-- Product Detail View -->
     <div id="product-detail-view" class="hidden flex-1 p-4">
         <button onclick="toggleView('product-view')" class="text-emerald-800 font-bold mb-4">← Back</button>
         <div id="detail-content"></div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="hidden absolute inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div id="confirm-box" class="bg-white rounded-2xl p-6 w-full max-w-sm text-center shadow-2xl">
+            <div id="confirm-content"></div>
+            <button id="confirm-btn" class="w-full bg-emerald-700 text-white py-3 rounded-xl font-bold mt-4">Confirm & Add</button>
+            <button onclick="closeModal()" class="w-full mt-2 text-slate-500 text-sm underline">Cancel</button>
+        </div>
     </div>
 
     <!-- Cart View -->
@@ -112,10 +108,28 @@
     updateCartUI();
 
     const productData = {
-        'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation. Combines Saponin Soap and Laundry Booster.' },
-        'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap, crafted for deep, gentle cleaning.' },
-        'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster to brighten and refresh your clothes.' }
+        'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation.' },
+        'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap.' },
+        'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster.' }
     };
+
+    function confirmAddToCart(id) {
+        const p = productData[id];
+        document.getElementById('confirm-content').innerHTML = `
+            <img src="${p.img}" class="w-32 h-32 mx-auto object-contain mb-4">
+            <h3 class="font-bold text-lg">Add to cart?</h3>
+            <p class="text-sm text-slate-600 mb-2">${p.name}</p>
+            <p class="font-bold">$${p.price.toFixed(2)}</p>
+        `;
+        document.getElementById('confirm-btn').onclick = () => {
+            cart.push({ ...p, id: Date.now() });
+            saveAndRefresh();
+            closeModal();
+        };
+        document.getElementById('confirm-modal').classList.remove('hidden');
+    }
+
+    function closeModal() { document.getElementById('confirm-modal').classList.add('hidden'); }
 
     function showProductDetail(id) {
         const p = productData[id];
@@ -124,7 +138,7 @@
             <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
             <p class="text-slate-600 text-sm mb-6 leading-relaxed">${p.desc}</p>
             <div class="font-bold text-xl mb-6">$${p.price.toFixed(2)} USD</div>
-            <button onclick="addToCart('${p.name}', ${p.price})" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
+            <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
         `;
         document.getElementById('product-view').classList.add('hidden');
         document.getElementById('product-detail-view').classList.remove('hidden');
@@ -137,17 +151,6 @@
         document.getElementById('cart-view').classList.add('hidden');
         document.getElementById('main-header').classList.remove('hidden');
         document.getElementById(viewId).classList.remove('hidden');
-    }
-
-    function addToCart(name, price) {
-        cart.push({ name, price, id: Date.now() });
-        saveAndRefresh();
-        alert(name + " added to your cart!");
-    }
-
-    function removeFromCart(id) {
-        cart = cart.filter(item => item.id !== id);
-        saveAndRefresh();
     }
 
     function saveAndRefresh() {
