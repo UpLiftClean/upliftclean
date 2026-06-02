@@ -4,105 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UpLiftClean | Shop Organic Laundry Care</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#F6F6F6] text-slate-900 antialiased min-h-screen flex flex-col items-center"> 
+<body class="bg-slate-100 flex flex-col items-center">
 
-<div id="app" class="w-full max-w-md bg-white min-h-screen shadow-xl flex flex-col relative pb-24"> 
-
-    <!-- Utility Banner -->
-    <div class="bg-emerald-800 text-white text-[9px] font-medium px-4 py-1 flex justify-between items-center">
-        <span>🌐 Shipping Globally to Your Doorstep</span>
-        <span class="underline">Details</span>
-    </div> 
-
-    <!-- Header -->
-    <header id="main-header" class="bg-white px-4 pt-3 pb-4 sticky top-0 z-50 border-b border-slate-100">
-        <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-3">
-                <img src="1780000331883.png" alt="Logo" class="w-16 h-16 object-contain rounded-xl border border-slate-100 p-0.5">
-                <span class="font-bold text-2xl text-slate-900 tracking-tight">UpLiftClean</span>
-            </div>
-            <button onclick="openCart()" class="p-2 bg-slate-50 rounded-full relative">
-                🛒 <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
-            </button>
+<div id="app" class="w-full max-w-md bg-white min-h-screen relative pb-20 shadow-xl">
+    <header class="p-4 border-b sticky top-0 bg-white z-50">
+        <div class="flex justify-between items-center mb-3">
+            <img src="1780000331883.png" class="w-12">
+            <button onclick="view('cart')">🛒<span id="cc">0</span></button>
         </div>
-        <div class="relative">
-            <input type="text" id="search-input" onkeypress="handleSearch(event)" placeholder="Search organic laundry essentials..." class="w-full bg-slate-100 text-sm pl-10 pr-4 py-3 rounded-full border border-transparent focus:bg-white focus:border-slate-300 outline-none transition-all">
-            <span class="absolute left-3.5 top-3.5 text-slate-400">🔍</span>
-        </div>
-    </header> 
+        <input id="s" onkeypress="hS(event)" placeholder="Search..." class="w-full bg-slate-100 p-2 rounded-full">
+    </header>
 
-    <!-- Main View -->
-    <main id="main-view" class="flex-1 overflow-y-auto">
-        <div id="home-content">
-            <div class="p-4">
-                <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
-                    <h2 class="text-xl font-bold mb-1">Organic & 100% Natural Plant-Based</h2>
-                    <p class="text-emerald-100 text-sm font-semibold tracking-wide">NATURAL PURITY, POWERFUL OPPORTUNITY</p>
-                </div>
-            </div> 
-
-            <!-- Updated Categories Section based on 1000052509.jpg -->
-            <div class="px-4 pb-6">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
-                <div class="grid grid-cols-4 gap-2">
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center">
-                        <div class="text-lg">🧼</div>
-                        <span class="text-[9px] font-semibold block leading-tight mt-1">Laundry Soap</span>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center">
-                        <div class="text-lg">🧴</div>
-                        <span class="text-[9px] font-semibold block leading-tight mt-1">Personal Care</span>
-                        <span class="text-[8px] text-emerald-700 font-bold block mt-0.5">COMING SOON</span>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] font-semibold block mt-1">Booster</span></div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] font-semibold block mt-1">Bundles</span></div>
-                </div>
+    <main id="m" class="p-4">
+        <div id="home">
+            <div class="bg-emerald-800 text-white p-4 rounded-xl mb-4 text-sm font-bold">NATURAL PURITY, POWERFUL OPPORTUNITY</div>
+            
+            <div class="grid grid-cols-4 gap-2 mb-6" id="cats">
+                <div class="text-center cursor-pointer" onclick="filterCategory('laundry')">🧼<p class="text-[9px]">Laundry Soap</p></div>
+                <div class="text-center">🧴<p class="text-[9px]">Personal Care</p><p class="text-[8px] text-emerald-700">COMING SOON</p></div>
+                <div class="text-center">🪵<p class="text-[9px]">Booster</p></div>
+                <div class="text-center">📦<p class="text-[9px]">Bundles</p></div>
             </div>
 
-            <div class="px-4">
-                <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
-                <div id="product-grid" class="grid grid-cols-2 gap-3"></div>
-            </div>
+            <div id="prod" class="grid grid-cols-2 gap-3"></div>
         </div>
-        
-        <div id="search-results" class="hidden p-4">
-            <h2 id="search-title" class="font-bold text-lg mb-4"></h2>
-            <div id="search-list" class="space-y-4"></div>
-            <button onclick="clearSearch()" class="mt-6 text-emerald-800 underline text-sm font-bold">← Back to Home</button>
+
+        <div id="search" class="hidden">
+            <h2 id="st" class="font-bold mb-4"></h2>
+            <div id="sl"></div>
+            <button onclick="clearS()" class="mt-4 underline">← Back</button>
         </div>
     </main>
 
-    <!-- Product Detail, Modal, and Cart Views remain unchanged below... -->
-    <!-- (Redacted for brevity, but full implementation continues...) -->
+    <div id="det" class="hidden p-4">
+        <button onclick="history.back()" class="text-emerald-800 font-bold">← Back</button>
+        <div id="dc"></div>
+    </div>
+
+    <div id="cart" class="hidden p-4">
+        <div id="cl"></div>
+        <p id="ct" class="font-bold mt-4"></p>
+        <button onclick="history.back()" class="mt-4 text-slate-500 underline">Back to Shopping</button>
+    </div>
+
+    <div id="mod" class="hidden absolute inset-0 bg-black/50 flex items-center p-4">
+        <div class="bg-white p-6 rounded-xl w-full">
+            <div id="mc"></div>
+            <button id="mb" class="w-full bg-emerald-700 text-white p-3 rounded-lg mt-4">Confirm & Add</button>
+            <button onclick="mod.classList.add('hidden')" class="w-full mt-2 text-slate-500">Cancel</button>
+        </div>
+    </div>
 </div>
+
 <script>
-    // ... (Script remains fully functional as established)
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const productData = {
-        'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation.' },
-        'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap.' },
-        'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster.' }
+    let c = JSON.parse(localStorage.getItem('c')) || [];
+    const d = {
+        'set': { n: 'Pure Power Set', p: 7.99, i: 'thecompleteset.png', cat: 'laundry' },
+        'soap': { n: 'Pure Prime Soap', p: 4.99, i: 'pureprime.jpg', cat: 'laundry' },
+        'booster': { n: 'Pure Plus Booster', p: 4.49, i: 'pureplus.jpg', cat: 'laundry' }
     };
 
-    function renderHome() {
-        const grid = document.getElementById('product-grid');
-        grid.innerHTML = Object.keys(productData).map(id => `
-            <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-                <img src="${productData[id].img}" onclick="showProductDetail('${id}')" class="h-32 object-contain mb-3 cursor-pointer">
-                <h4 class="font-bold text-xs">${productData[id].name}</h4>
-                <div class="font-bold text-sm my-2">$${productData[id].price.toFixed(2)} USD</div>
-                <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
-            </div>
-        `).join('');
-    }
+    const view = (v) => {
+        ['home', 'search', 'det', 'cart'].forEach(id => document.getElementById(id).classList.add('hidden'));
+        document.getElementById(v).classList.remove('hidden');
+        if (v == 'cart') uC();
+    };
 
-    renderHome();
+    const rH = (items = d) => {
+        prod.innerHTML = Object.keys(items).map(k => `
+            <div class="border p-2 rounded-xl">
+                <img src="${items[k].i}" onclick="sD('${k}')" class="cursor-pointer">
+                <p class="text-xs font-bold mt-2">${items[k].n}</p>
+                <button onclick="cM('${k}')" class="bg-black text-white w-full rounded mt-2">Add</button>
+            </div>`).join('');
+    };
+
+    const filterCategory = (cat) => {
+        const filtered = Object.fromEntries(Object.entries(d).filter(([k, v]) => v.cat === cat));
+        rH(filtered);
+    };
+
+    const sD = (k) => {
+        history.pushState({v: 'd'}, '');
+        dc.innerHTML = `<img src="${d[k].i}" class="w-full"><p class="text-lg font-bold">${d[k].n}</p><p>$${d[k].p}</p>`;
+        document.getElementById('m').classList.add('hidden');
+        document.getElementById('det').classList.remove('hidden');
+    };
+
+    const cM = (k) => {
+        mc.innerHTML = `<p>Add ${d[k].n} to cart?</p>`;
+        mb.onclick = () => {
+            c.push({...d[k], id: Date.now()});
+            sA();
+            mod.classList.add('hidden');
+        };
+        mod.classList.remove('hidden');
+    };
+
+    const sA = () => { localStorage.setItem('c', JSON.stringify(c)); uC(); };
+
+    const uC = () => {
+        cc.innerText = c.length;
+        cl.innerHTML = c.map(i => `<p>${i.n} - $${i.p}</p>`).join('');
+        ct.innerText = `Total: $${c.reduce((s, i) => s + i.p, 0).toFixed(2)}`;
+    };
+
+    const hS = (e) => {
+        if (e.key == 'Enter') {
+            let q = s.value.toLowerCase(), r = Object.keys(d).filter(k => d[k].n.toLowerCase().includes(q));
+            home.classList.add('hidden');
+            search.classList.remove('hidden');
+            st.innerText = `Results for "${q}"`;
+            sl.innerHTML = r.map(k => `<p onclick="sD('${k}')" class="cursor-pointer">${d[k].n}</p>`).join('');
+        }
+    };
+
+    const clearS = () => { s.value = ''; home.classList.remove('hidden'); search.classList.add('hidden'); };
+
+    window.onpopstate = () => location.reload();
+    rH();
+    uC();
 </script>
 </body>
 </html>
