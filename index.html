@@ -12,104 +12,89 @@
 
     <div class="w-full max-w-md bg-white min-h-screen shadow-xl flex flex-col relative pb-24">
         
-        <!-- Utility Banner -->
-        <div class="bg-emerald-800 text-white text-[11px] font-medium px-4 py-2 flex justify-between items-center">
-            <span>🌐 Shipping Globally to Your Doorstep</span>
-            <span class="underline">Details</span>
-        </div>
-
-        <!-- Header -->
+        <!-- Header (Triple-tap the text "UpLiftClean" to trigger Admin) -->
         <header class="bg-white px-4 pt-3 pb-4 sticky top-0 z-50 border-b border-slate-100">
             <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2.5">
+                <div class="flex items-center gap-2.5 cursor-pointer" onclick="handleHeaderTap()">
                     <img src="1780000331883.png" alt="Logo" class="w-9 h-9 object-contain rounded-lg border border-slate-100 p-0.5">
                     <span class="font-bold text-xl text-slate-900 tracking-tight">UpLiftClean</span>
                 </div>
-                <button class="p-2 bg-slate-50 rounded-full">🛒</button>
-            </div>
-            <div class="relative">
-                <input type="text" placeholder="Search organic laundry essentials..." class="w-full bg-slate-100 text-sm pl-10 pr-4 py-3 rounded-full border border-transparent focus:bg-white focus:border-slate-300 outline-none transition-all">
-                <span class="absolute left-3.5 top-3.5 text-slate-400">🔍</span>
+                <button onclick="toggleCart()" class="p-2 bg-slate-50 rounded-full relative">
+                    🛒 <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
             </div>
         </header>
 
-        <main class="flex-1 overflow-y-auto">
-            <!-- Hero Promo -->
+        <!-- Main Content Area -->
+        <main id="main-content" class="flex-1 overflow-y-auto">
             <div class="p-4">
-                <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm">
                     <h2 class="text-xl font-bold mb-1">100% Organic Essentials</h2>
                     <p class="text-emerald-100 text-xs mb-4">Upgrade to pure, botanical laundry rituals.</p>
-                    <button class="bg-white text-emerald-800 font-semibold text-xs px-4 py-2 rounded-lg">Shop All Blends</button>
                 </div>
             </div>
 
-            <!-- Categories -->
-            <div class="px-4 pb-6">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
-                <div class="grid grid-cols-4 gap-2">
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🌿</div><span class="text-[9px] font-semibold">Pure Set</span></div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🧼</div><span class="text-[9px] font-semibold">Soap</span></div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] font-semibold">Booster</span></div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] font-semibold">Bundles</span></div>
-                </div>
-            </div>
-
-            <!-- Restored Product Grid -->
             <div class="px-4">
                 <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
                 <div class="grid grid-cols-2 gap-3">
-                    
-                    <!-- 1. Pure Power Set -->
-                    <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-slate-200 transition-all cursor-pointer">
-                        <div>
-                            <div class="bg-slate-50 rounded-xl p-3 mb-2 flex items-center justify-center">
-                                <img src="1000052415.png" alt="The Pure Power Set (Booster + Soap)" class="h-32 object-contain aspect-square">
-                            </div>
-                            <h4 class="font-bold text-xs">The Pure Power Set</h4>
-                            <p class="text-[9px] text-slate-400">30 loads / 450g</p>
-                            <div class="font-bold text-sm my-2">$7.99 USD</div>
-                        </div>
-                        <button class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg active:scale-[0.98]">Add to Cart</button>
-                        <p class="text-[8px] text-slate-500 italic mt-2 border-t pt-2">Notice for all customers, You can also order through our facebook page, especially for those that are Founding Brand Partners and receive your FBP discounts.</p>
+                    <!-- Pure Power Set -->
+                    <div class="border rounded-2xl bg-white p-3 shadow-sm">
+                        <img src="1000052415.png" class="h-32 object-contain w-full mb-2">
+                        <h4 class="font-bold text-xs">The Pure Power Set</h4>
+                        <div class="font-bold text-sm my-2">$7.99</div>
+                        <button onclick="addToCart('The Pure Power Set', 7.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                     </div>
-
-                    <!-- 2. Pure Prime Soap -->
-                    <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-slate-200 transition-all cursor-pointer">
-                        <div>
-                            <div class="bg-slate-50 rounded-xl p-3 mb-2 flex items-center justify-center">
-                                <img src="1000052416.jpg" alt="Pure Prime Saponin Soap Bag" class="h-32 object-contain aspect-square">
-                            </div>
-                            <h4 class="font-bold text-xs">Pure Prime Saponin Soap</h4>
-                            <p class="text-[9px] text-slate-400">30 loads / 100g</p>
-                            <div class="font-bold text-sm my-2">$4.99 USD</div>
-                        </div>
-                        <button class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg active:scale-[0.98]">Add to Cart</button>
-                        <p class="text-[8px] text-slate-500 italic mt-2 border-t pt-2">Notice for all customers, You can also order through our facebook page, especially for those that are Founding Brand Partners and receive your FBP discounts.</p>
-                    </div>
-
-                    <!-- 3. Pure Plus Booster -->
-                    <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-slate-200 transition-all cursor-pointer">
-                        <div>
-                            <div class="bg-slate-50 rounded-xl p-3 mb-2 flex items-center justify-center">
-                                <img src="1000052417.jpg" alt="Pure Plus Laundry Booster Bag" class="h-32 object-contain aspect-square">
-                            </div>
-                            <h4 class="font-bold text-xs">Pure Plus Laundry Booster</h4>
-                            <p class="text-[9px] text-slate-400">30 loads / 350g</p>
-                            <div class="font-bold text-sm my-2">$4.49 USD</div>
-                        </div>
-                        <button class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg active:scale-[0.98]">Add to Cart</button>
-                        <p class="text-[8px] text-slate-500 italic mt-2 border-t pt-2">Notice for all customers, You can also order through our facebook page, especially for those that are Founding Brand Partners and receive your FBP discounts.</p>
+                    <!-- Soap -->
+                    <div class="border rounded-2xl bg-white p-3 shadow-sm">
+                        <img src="1000052416.jpg" class="h-32 object-contain w-full mb-2">
+                        <h4 class="font-bold text-xs">Pure Prime Soap</h4>
+                        <div class="font-bold text-sm my-2">$4.99</div>
+                        <button onclick="addToCart('Pure Prime Soap', 4.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </main>
+
+        <!-- Hidden Cart View -->
+        <div id="cart-view" class="hidden p-6 flex-1">
+            <h2 class="text-xl font-bold mb-4">Your Shopping Cart</h2>
+            <div id="cart-items" class="space-y-3 mb-6"></div>
+            <a href="https://m.me/upliftcleanofficial" class="block bg-blue-600 text-white text-center py-3 rounded-xl font-bold mb-3">Complete Order in Messenger</a>
+            <button onclick="toggleCart()" class="text-slate-500 underline text-xs">Return to Shop</button>
+        </div>
         
         <!-- Footer Nav -->
         <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
-            <div class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs"><span>🛍️</span> Shop</div>
-            <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>📦</span> Order</div>
+            <div onclick="location.reload()" class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs cursor-pointer"><span>🛍️</span> Shop</div>
+            <a href="https://m.me/upliftcleanofficial" class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>📦</span> Order</a>
             <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>🌱</span> Integrity</div>
         </nav>
     </div>
+
+    <script>
+        // Admin Access (Triple-tap header)
+        let tapCount = 0;
+        function handleHeaderTap() {
+            tapCount++;
+            if (tapCount === 3) {
+                const code = prompt("Enter Admin Code:");
+                if (code === "ADMIN2026") alert("Admin Panel Unlocked");
+                tapCount = 0;
+            }
+        }
+
+        // Cart Logic
+        let cart = [];
+        function toggleCart() {
+            document.getElementById('main-content').classList.toggle('hidden');
+            document.getElementById('cart-view').classList.toggle('hidden');
+        }
+        function addToCart(name, price) {
+            cart.push({name, price});
+            document.getElementById('cart-count').innerText = cart.length;
+            const items = document.getElementById('cart-items');
+            items.innerHTML += `<div class="p-3 bg-slate-50 rounded-lg text-xs font-bold border">${name} - $${price}</div>`;
+        }
+    </script>
 </body>
 </html>
