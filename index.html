@@ -41,6 +41,16 @@
             </div>
         </div> 
 
+        <div class="px-4 pb-6">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
+            <div class="grid grid-cols-4 gap-2">
+                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🌿</div><span class="text-[9px] font-semibold">Pure Set</span></div>
+                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🧼</div><span class="text-[9px] font-semibold">Soap</span></div>
+                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] font-semibold">Booster</span></div>
+                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] font-semibold">Bundles</span></div>
+            </div>
+        </div> 
+
         <div class="px-4">
             <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
             <div class="grid grid-cols-2 gap-3"> 
@@ -50,6 +60,18 @@
                     <div class="font-bold text-sm my-2">$7.99 USD</div>
                     <button onclick="addToCart('The Pure Power Set', 7.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                 </div> 
+                <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
+                    <img src="pureprime.jpg" class="h-32 object-contain mb-3">
+                    <h4 class="font-bold text-xs">Pure Prime Saponin Soap</h4>
+                    <div class="font-bold text-sm my-2">$4.99 USD</div>
+                    <button onclick="addToCart('Pure Prime Soap', 4.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+                </div> 
+                <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
+                    <img src="pureplus.jpg" class="h-32 object-contain mb-3">
+                    <h4 class="font-bold text-xs">Pure Plus Laundry Booster</h4>
+                    <div class="font-bold text-sm my-2">$4.49 USD</div>
+                    <button onclick="addToCart('Pure Plus Booster', 4.49)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+                </div>
             </div>
         </div>
     </main> 
@@ -91,20 +113,17 @@
     }
 
     function toggleView(viewId) {
-        // Reset all views
         document.getElementById('product-view').classList.add('hidden');
         document.getElementById('product-detail-view').classList.add('hidden');
         document.getElementById('cart-view').classList.add('hidden');
         document.getElementById('main-header').classList.remove('hidden');
-        
-        // Show target
         document.getElementById(viewId).classList.remove('hidden');
     }
 
     function addToCart(name, price) {
         cart.push({ name, price, id: Date.now() });
         saveAndRefresh();
-        alert(name + " added to cart!");
+        alert(name + " added to your cart!");
     }
 
     function removeFromCart(id) {
