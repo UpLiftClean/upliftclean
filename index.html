@@ -12,11 +12,13 @@
 
 <div id="app" class="w-full max-w-md bg-white min-h-screen shadow-xl flex flex-col relative pb-24"> 
 
+    <!-- Utility Banner -->
     <div class="bg-emerald-800 text-white text-[9px] font-medium px-4 py-1 flex justify-between items-center">
         <span>🌐 Shipping Globally to Your Doorstep</span>
         <span class="underline">Details</span>
     </div> 
 
+    <!-- Header -->
     <header id="main-header" class="bg-white px-4 pt-3 pb-4 sticky top-0 z-50 border-b border-slate-100">
         <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-3">
@@ -33,6 +35,7 @@
         </div>
     </header> 
 
+    <!-- Product Grid View -->
     <main id="product-view" class="flex-1 overflow-y-auto">
         <div class="p-4">
             <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
@@ -54,20 +57,23 @@
         <div class="px-4">
             <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
             <div class="grid grid-cols-2 gap-3"> 
+                <!-- Product 1 -->
                 <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
                     <img src="thecompleteset.png" onclick="showProductDetail('set')" class="h-32 object-contain mb-3 cursor-pointer">
                     <h4 class="font-bold text-xs">The Pure Power Set</h4>
                     <div class="font-bold text-sm my-2">$7.99 USD</div>
                     <button onclick="addToCart('The Pure Power Set', 7.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                 </div> 
+                <!-- Product 2 -->
                 <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-                    <img src="pureprime.jpg" class="h-32 object-contain mb-3">
+                    <img src="pureprime.jpg" onclick="showProductDetail('soap')" class="h-32 object-contain mb-3 cursor-pointer">
                     <h4 class="font-bold text-xs">Pure Prime Saponin Soap</h4>
                     <div class="font-bold text-sm my-2">$4.99 USD</div>
                     <button onclick="addToCart('Pure Prime Soap', 4.99)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
                 </div> 
+                <!-- Product 3 -->
                 <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-                    <img src="pureplus.jpg" class="h-32 object-contain mb-3">
+                    <img src="pureplus.jpg" onclick="showProductDetail('booster')" class="h-32 object-contain mb-3 cursor-pointer">
                     <h4 class="font-bold text-xs">Pure Plus Laundry Booster</h4>
                     <div class="font-bold text-sm my-2">$4.49 USD</div>
                     <button onclick="addToCart('Pure Plus Booster', 4.49)" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
@@ -76,15 +82,13 @@
         </div>
     </main> 
 
+    <!-- Dynamic Product Detail View -->
     <div id="product-detail-view" class="hidden flex-1 p-4">
         <button onclick="toggleView('product-view')" class="text-emerald-800 font-bold mb-4">← Back</button>
-        <img src="thecompleteset.png" class="w-full h-64 object-contain mb-6">
-        <h2 class="text-2xl font-bold mb-2">The Pure Power Set</h2>
-        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Experience the ultimate laundry transformation. This bundle combines our signature Saponin Soap with our powerful Laundry Booster to ensure your clothes are deeply cleaned, naturally brightened, and refreshed without harsh chemicals.</p>
-        <div class="font-bold text-xl mb-6">$7.99 USD</div>
-        <button onclick="addToCart('The Pure Power Set', 7.99)" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
+        <div id="detail-content"></div>
     </div>
 
+    <!-- Cart View -->
     <div id="cart-view" class="hidden flex-1 p-4">
         <h2 class="text-lg font-bold mb-4">Your Shopping Cart</h2>
         <div id="cart-items-list" class="space-y-3"></div>
@@ -95,6 +99,7 @@
         </div>
     </div>
 
+    <!-- Footer Nav -->
     <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
         <div class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs"><span>🛍️</span> Shop</div>
         <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>📦</span> Order</div>
@@ -106,7 +111,21 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     updateCartUI();
 
+    const productData = {
+        'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation. Combines Saponin Soap and Laundry Booster.' },
+        'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap, crafted for deep, gentle cleaning.' },
+        'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster to brighten and refresh your clothes.' }
+    };
+
     function showProductDetail(id) {
+        const p = productData[id];
+        document.getElementById('detail-content').innerHTML = `
+            <img src="${p.img}" class="w-full h-64 object-contain mb-6">
+            <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">${p.desc}</p>
+            <div class="font-bold text-xl mb-6">$${p.price.toFixed(2)} USD</div>
+            <button onclick="addToCart('${p.name}', ${p.price})" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
+        `;
         document.getElementById('product-view').classList.add('hidden');
         document.getElementById('product-detail-view').classList.remove('hidden');
         document.getElementById('main-header').classList.add('hidden');
