@@ -14,8 +14,8 @@
 </head>
 <body class="pb-12">
     <div class="max-w-md mx-auto p-4">
-        <!-- Header -->
-        <header class="mb-6">
+        <!-- Header (Triple-tap here for Admin) -->
+        <header class="mb-6 cursor-pointer" onclick="handleHeaderTap()">
             <h1 class="text-3xl font-bold text-slate-900">UpLiftClean</h1>
             <p class="text-sm text-slate-500">Natural Purity, Powerful Opportunity.</p>
         </header>
@@ -23,62 +23,60 @@
         <!-- Utility Nav -->
         <div class="grid grid-cols-2 gap-3 mb-8">
             <a href="https://m.me/upliftcleanofficial" class="feature-btn block">Customer Service</a>
-            <button class="feature-btn">Search Products</button>
-            <button class="feature-btn">Track Order</button>
-            <button class="feature-btn">View My Cart</button>
+            <button class="feature-btn" onclick="showSection('cart')">View My Cart (<span id="cart-count">0</span>)</button>
         </div>
 
         <!-- Product Grid -->
-        <div class="space-y-4">
-            <!-- Complete Set -->
+        <div id="shop-section" class="space-y-4">
             <div class="product-card">
-                <img src="thecompleteset.png" class="w-full h-48 object-cover rounded-xl mb-4">
                 <h4 class="font-bold text-sm">The Complete Set</h4>
-                <div class="mt-4">
-                    <!-- PASTE PAYPAL BUTTON CODE FOR COMPLETE SET HERE -->
-                    <div class="bg-blue-600 text-white text-center py-3 rounded-lg text-xs font-bold">PayPal Buy Now (Set)</div>
-                </div>
+                <button onclick="addToCart('The Complete Set', 50)" class="w-full bg-slate-900 text-white py-2 mt-3 rounded-lg text-xs font-bold">Add to Cart</button>
             </div>
-
-            <!-- Soap & Booster Grid -->
-            <div class="grid grid-cols-2 gap-4">
-                <div class="product-card">
-                    <img src="pureprime.jpg" class="w-full h-32 object-cover rounded-xl mb-4">
-                    <h4 class="font-bold text-xs">Pure Prime Soap</h4>
-                    <!-- PASTE PAYPAL BUTTON CODE FOR SOAP HERE -->
-                    <div class="bg-blue-600 text-white text-center py-2 mt-3 rounded-lg text-[10px] font-bold">PayPal Buy Now</div>
-                </div>
-                <div class="product-card">
-                    <img src="pureplus.jpg" class="w-full h-32 object-cover rounded-xl mb-4">
-                    <h4 class="font-bold text-xs">Pure Plus Booster</h4>
-                    <!-- PASTE PAYPAL BUTTON CODE FOR BOOSTER HERE -->
-                    <div class="bg-blue-600 text-white text-center py-2 mt-3 rounded-lg text-[10px] font-bold">PayPal Buy Now</div>
-                </div>
-            </div>
+            <!-- Repeat for other products -->
         </div>
 
-        <!-- Reviews -->
-        <div class="mt-10">
-            <h3 class="text-lg font-bold mb-4 text-slate-900">Customer Reviews</h3>
-            <div id="testimonial-list" class="space-y-4">
-                <div id="review-1" class="bg-white p-4 rounded-xl border border-slate-200">
-                    <p class="text-xs text-slate-600 mb-2">"Absolutely love the laundry booster!"</p>
-                    <p class="text-[10px] font-bold text-slate-400">— Sarah M.</p>
-                    <button onclick="document.getElementById('review-1').remove()" class="admin-delete hidden mt-3 text-[9px] text-red-500 hover:underline">Remove Review</button>
-                </div>
+        <!-- Cart Section (Hidden by default) -->
+        <div id="cart-section" class="hidden">
+            <h3 class="text-lg font-bold mb-4">Your Cart</h3>
+            <div id="cart-items" class="space-y-2 mb-4"></div>
+            <div id="paypal-checkout-container" class="mt-6 border-t pt-4">
+                <p class="text-xs mb-4">Select your payment method below:</p>
+                <!-- Paste your PayPal Button Code Here -->
+                <div class="bg-blue-600 text-white text-center py-3 rounded-lg font-bold">PayPal Checkout Placeholder</div>
             </div>
+            <button onclick="showSection('shop')" class="mt-4 text-xs text-slate-500 underline">Back to Shop</button>
+        </div>
+
+        <!-- Admin Section -->
+        <div id="admin-panel" class="hidden mt-10 p-4 bg-red-50 border border-red-200 rounded-xl">
+            <h3 class="text-red-800 font-bold">Admin Panel</h3>
+            <div id="admin-reviews"></div>
         </div>
     </div>
 
-    <!-- Secret Trigger -->
-    <div onclick="revealAdmin()" class="fixed bottom-4 right-4 w-6 h-6 bg-slate-900 rounded-full opacity-20 cursor-pointer"></div>
-
     <script>
-        function revealAdmin() {
-            const code = prompt("Enter Admin Code:");
-            if (code === "ADMIN2026") {
-                document.querySelectorAll('.admin-delete').forEach(el => el.classList.remove('hidden'));
+        let tapCount = 0;
+        function handleHeaderTap() {
+            tapCount++;
+            if (tapCount === 3) {
+                const code = prompt("Admin Access:");
+                if (code === "ADMIN2026") { document.getElementById('admin-panel').classList.remove('hidden'); }
+                tapCount = 0;
             }
+        }
+
+        function showSection(id) {
+            document.getElementById('shop-section').classList.add('hidden');
+            document.getElementById('cart-section').classList.add('hidden');
+            document.getElementById(id + '-section').classList.remove('hidden');
+        }
+
+        let cart = [];
+        function addToCart(name, price) {
+            cart.push({name, price});
+            document.getElementById('cart-count').innerText = cart.length;
+            const list = document.getElementById('cart-items');
+            list.innerHTML += `<div class="bg-white p-2 text-xs">${name} - $${price}</div>`;
         }
     </script>
 </body>
