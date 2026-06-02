@@ -35,10 +35,9 @@
         </div>
     </header> 
 
-    <!-- Main Content -->
+    <!-- Main Product View -->
     <main id="product-view" class="flex-1 overflow-y-auto">
         <div class="p-4">
-            <!-- Hero Banner Updated for Compliance -->
             <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
                 <h2 class="text-xl font-bold mb-1">Organic & 100% Natural Plant-Based</h2>
                 <p class="text-emerald-100 text-xs mb-4">Upgrade to pure, botanical laundry rituals.</p>
@@ -80,9 +79,111 @@
         </div>
     </main> 
 
-    <!-- Product Detail View & Modal omitted for brevity, logic remains identical -->
-    <!-- (Rest of the structure preserved as requested) -->
+    <!-- Product Detail View -->
+    <div id="product-detail-view" class="hidden flex-1 p-4">
+        <button onclick="toggleView('product-view')" class="text-emerald-800 font-bold mb-4">← Back</button>
+        <div id="detail-content"></div>
+    </div>
 
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="hidden absolute inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div id="confirm-box" class="bg-white rounded-2xl p-6 w-full max-w-sm text-center shadow-2xl">
+            <div id="confirm-content"></div>
+            <button id="confirm-btn" class="w-full bg-emerald-700 text-white py-3 rounded-xl font-bold mt-4">Confirm & Add</button>
+            <button onclick="closeModal()" class="w-full mt-2 text-slate-500 text-sm underline">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Cart View -->
+    <div id="cart-view" class="hidden flex-1 p-4">
+        <h2 class="text-lg font-bold mb-4">Your Shopping Cart</h2>
+        <div id="cart-items-list" class="space-y-3"></div>
+        <div class="mt-6 border-t pt-4">
+            <p id="cart-total" class="font-bold text-lg">Total: $0.00</p>
+            <button class="w-full mt-4 bg-emerald-700 text-white py-3 rounded-xl font-bold">Checkout</button>
+            <button onclick="toggleView('product-view')" class="w-full mt-2 text-slate-500 text-sm underline">Back to Shopping</button>
+        </div>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
+        <div class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs"><span>🛍️</span> Shop</div>
+        <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>📦</span> Order</div>
+        <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>🌱</span> Integrity</div>
+    </nav>
 </div>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    updateCartUI();
+
+    const productData = {
+        'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation.' },
+        'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap.' },
+        'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster.' }
+    };
+
+    function confirmAddToCart(id) {
+        const p = productData[id];
+        document.getElementById('confirm-content').innerHTML = `
+            <img src="${p.img}" class="w-32 h-32 mx-auto object-contain mb-4">
+            <h3 class="font-bold text-lg">Add to cart?</h3>
+            <p class="text-sm text-slate-600 mb-2">${p.name}</p>
+            <p class="font-bold">$${p.price.toFixed(2)}</p>
+        `;
+        document.getElementById('confirm-btn').onclick = () => {
+            cart.push({ ...p, id: Date.now() });
+            saveAndRefresh();
+            closeModal();
+        };
+        document.getElementById('confirm-modal').classList.remove('hidden');
+    }
+
+    function closeModal() { document.getElementById('confirm-modal').classList.add('hidden'); }
+
+    function showProductDetail(id) {
+        const p = productData[id];
+        document.getElementById('detail-content').innerHTML = `
+            <img src="${p.img}" class="w-full h-64 object-contain mb-6">
+            <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">${p.desc}</p>
+            <div class="font-bold text-xl mb-6">$${p.price.toFixed(2)} USD</div>
+            <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
+        `;
+        document.getElementById('product-view').classList.add('hidden');
+        document.getElementById('product-detail-view').classList.remove('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+    }
+
+    function toggleView(viewId) {
+        document.getElementById('product-view').classList.add('hidden');
+        document.getElementById('product-detail-view').classList.add('hidden');
+        document.getElementById('cart-view').classList.add('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        document.getElementById(viewId).classList.remove('hidden');
+    }
+
+    function saveAndRefresh() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        document.getElementById('cart-count').innerText = cart.length;
+        const listEl = document.getElementById('cart-items-list');
+        listEl.innerHTML = cart.map(i => `
+            <div class="flex justify-between items-center text-sm border-b pb-2">
+                <span>${i.name} - $${i.price.toFixed(2)}</span>
+                <button onclick="removeFromCart(${i.id})" class="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
+            </div>
+        `).join('');
+        document.getElementById('cart-total').innerText = `Total: $${cart.reduce((s, i) => s + i.price, 0).toFixed(2)}`;
+    }
+
+    function removeFromCart(id) {
+        cart = cart.filter(item => item.id !== id);
+        saveAndRefresh();
+    }
+</script>
 </body>
 </html>
