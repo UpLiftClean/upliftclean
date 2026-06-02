@@ -25,7 +25,7 @@
                 <img src="1780000331883.png" alt="Logo" class="w-16 h-16 object-contain rounded-xl border border-slate-100 p-0.5">
                 <span class="font-bold text-2xl text-slate-900 tracking-tight">UpLiftClean</span>
             </div>
-            <button onclick="toggleView('cart-view')" class="p-2 bg-slate-50 rounded-full relative">
+            <button onclick="openCart()" class="p-2 bg-slate-50 rounded-full relative">
                 🛒 <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
             </button>
         </div>
@@ -35,7 +35,7 @@
         </div>
     </header> 
 
-    <!-- Main Content -->
+    <!-- Main Product View -->
     <main id="product-view" class="flex-1 overflow-y-auto">
         <div class="p-4">
             <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
@@ -101,7 +101,7 @@
         <div class="mt-6 border-t pt-4">
             <p id="cart-total" class="font-bold text-lg">Total: $0.00</p>
             <button class="w-full mt-4 bg-emerald-700 text-white py-3 rounded-xl font-bold">Checkout</button>
-            <button onclick="toggleView('product-view')" class="w-full mt-2 text-slate-500 text-sm underline">Back to Shopping</button>
+            <button onclick="window.history.back()" class="w-full mt-2 text-slate-500 text-sm underline">Back to Shopping</button>
         </div>
     </div>
 
@@ -160,12 +160,22 @@
         document.getElementById('main-header').classList.add('hidden');
     }
 
+    function openCart() {
+        window.history.pushState({view: 'cart'}, '', '#cart');
+        toggleView('cart-view');
+    }
+
     function toggleView(viewId) {
         closeModal();
         document.getElementById('product-view').classList.add('hidden');
         document.getElementById('product-detail-view').classList.add('hidden');
         document.getElementById('cart-view').classList.add('hidden');
         document.getElementById('main-header').classList.remove('hidden');
+        
+        if (viewId === 'product-detail-view') {
+            document.getElementById('main-header').classList.add('hidden');
+        }
+        
         document.getElementById(viewId).classList.remove('hidden');
     }
 
