@@ -1,83 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UpLiftClean | Official Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f4f4f5; }
-        .feature-btn { background: white; border: 1px solid #e4e4e7; border-radius: 12px; padding: 12px; font-size: 12px; font-weight: 600; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-        .product-card { background: white; border-radius: 20px; padding: 20px; border: 1px solid #e4e4e7; }
-    </style>
-</head>
-<body class="pb-12">
-    <div class="max-w-md mx-auto p-4">
-        <!-- Header (Triple-tap here for Admin) -->
-        <header class="mb-6 cursor-pointer" onclick="handleHeaderTap()">
-            <h1 class="text-3xl font-bold text-slate-900">UpLiftClean</h1>
-            <p class="text-sm text-slate-500">Natural Purity, Powerful Opportunity.</p>
-        </header>
+<!-- Update this section within the 'sec-booking' div in your existing code -->
 
-        <!-- Utility Nav -->
-        <div class="grid grid-cols-2 gap-3 mb-8">
-            <a href="https://m.me/upliftcleanofficial" class="feature-btn block">Customer Service</a>
-            <button class="feature-btn" onclick="showSection('cart')">View My Cart (<span id="cart-count">0</span>)</button>
-        </div>
-
-        <!-- Product Grid -->
-        <div id="shop-section" class="space-y-4">
-            <div class="product-card">
-                <h4 class="font-bold text-sm">The Complete Set</h4>
-                <button onclick="addToCart('The Complete Set', 50)" class="w-full bg-slate-900 text-white py-2 mt-3 rounded-lg text-xs font-bold">Add to Cart</button>
-            </div>
-            <!-- Repeat for other products -->
-        </div>
-
-        <!-- Cart Section (Hidden by default) -->
-        <div id="cart-section" class="hidden">
-            <h3 class="text-lg font-bold mb-4">Your Cart</h3>
-            <div id="cart-items" class="space-y-2 mb-4"></div>
-            <div id="paypal-checkout-container" class="mt-6 border-t pt-4">
-                <p class="text-xs mb-4">Select your payment method below:</p>
-                <!-- Paste your PayPal Button Code Here -->
-                <div class="bg-blue-600 text-white text-center py-3 rounded-lg font-bold">PayPal Checkout Placeholder</div>
-            </div>
-            <button onclick="showSection('shop')" class="mt-4 text-xs text-slate-500 underline">Back to Shop</button>
-        </div>
-
-        <!-- Admin Section -->
-        <div id="admin-panel" class="hidden mt-10 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <h3 class="text-red-800 font-bold">Admin Panel</h3>
-            <div id="admin-reviews"></div>
-        </div>
+<div class="grid grid-cols-2 gap-2">
+    <div>
+        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Qty</label>
+        <select class="w-full border border-slate-200 rounded-xl p-3 bg-white text-xs focus:outline-emerald-600">
+            <option>1 Pack</option>
+            <option>2 Packs</option>
+            <option>Case Pack (6 Units)</option>
+        </select>
     </div>
+    <div>
+        <!-- Updated Country Selector -->
+        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Destination</label>
+        <select id="countrySelect" onchange="calculateShipping()" class="w-full border border-slate-200 rounded-xl p-3 bg-white text-xs focus:outline-emerald-600">
+            <option value="0">Select Country</option>
+            <option value="150">Philippines (PHP 150)</option>
+            <option value="500">United States (USD 9)</option>
+            <option value="650">United Kingdom (GBP 12)</option>
+            <option value="600">Australia (AUD 15)</option>
+            <option value="400">Singapore (SGD 8)</option>
+        </select>
+    </div>
+</div>
 
-    <script>
-        let tapCount = 0;
-        function handleHeaderTap() {
-            tapCount++;
-            if (tapCount === 3) {
-                const code = prompt("Admin Access:");
-                if (code === "ADMIN2026") { document.getElementById('admin-panel').classList.remove('hidden'); }
-                tapCount = 0;
-            }
-        }
+<!-- Shipping Display Area -->
+<div id="shippingDisplay" class="hidden bg-emerald-50 border border-emerald-100 p-3 rounded-xl mt-2">
+    <div class="flex justify-between items-center text-xs">
+        <span class="font-medium text-emerald-800">Est. Shipping (500g):</span>
+        <span id="shippingCost" class="font-bold text-emerald-900"></span>
+    </div>
+</div>
 
-        function showSection(id) {
-            document.getElementById('shop-section').classList.add('hidden');
-            document.getElementById('cart-section').classList.add('hidden');
-            document.getElementById(id + '-section').classList.remove('hidden');
+<script>
+    function calculateShipping() {
+        const select = document.getElementById('countrySelect');
+        const display = document.getElementById('shippingDisplay');
+        const costSpan = document.getElementById('shippingCost');
+        
+        if (select.value === "0") {
+            display.classList.add('hidden');
+        } else {
+            display.classList.remove('hidden');
+            // Assuming the value attribute is the cost in local currency/placeholder
+            costSpan.innerText = select.options[select.selectedIndex].text.split('(')[1].replace(')', '');
         }
-
-        let cart = [];
-        function addToCart(name, price) {
-            cart.push({name, price});
-            document.getElementById('cart-count').innerText = cart.length;
-            const list = document.getElementById('cart-items');
-            list.innerHTML += `<div class="bg-white p-2 text-xs">${name} - $${price}</div>`;
-        }
-    </script>
-</body>
-</html>
+    }
+</script>
