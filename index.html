@@ -95,7 +95,7 @@
     </div>
 
     <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
-        <div class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs"><span>🛍️</span> Shop</div>
+        <div class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs" onclick="clearView()"><span>🛍️</span> Shop</div>
         <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>📦</span> Order</div>
         <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>🌱</span> Integrity</div>
     </nav>
@@ -221,8 +221,15 @@
         listEl.innerHTML = cart.map(i => `
             <div class="flex justify-between items-center text-sm border-b pb-2">
                 <span>${i.name} - $${i.price.toFixed(2)}</span>
+                <button onclick="removeFromCart(${i.id})" class="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
             </div>
         `).join('');
+        document.getElementById('cart-total').innerText = `Total: $${cart.reduce((s, i) => s + i.price, 0).toFixed(2)}`;
+    }
+
+    function removeFromCart(id) {
+        cart = cart.filter(item => item.id !== id);
+        saveAndRefresh();
     }
 
     renderProducts();
