@@ -90,10 +90,16 @@
         <div id="cart-items-list" class="space-y-3"></div>
         <div class="mt-6 border-t pt-4">
             <p id="cart-total" class="font-bold text-lg">Total: $0.00</p>
-            <button onclick="clearView()" class="w-full mt-4 bg-emerald-700 text-white py-3 rounded-xl font-bold">Checkout</button>
             <button onclick="clearView()" class="w-full mt-2 text-slate-500 text-sm underline">Back to Shopping</button>
         </div>
     </div>
+
+    <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
+        <div class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs"><span>🛍️</span> Shop</div>
+        <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>📦</span> Order</div>
+        <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>🌱</span> Integrity</div>
+    </nav>
+</div>
 
 <script>
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -182,6 +188,8 @@
 
     function openCart() {
         document.getElementById('home-content').classList.add('hidden');
+        document.getElementById('list-view').classList.add('hidden');
+        document.getElementById('product-detail-view').classList.add('hidden');
         document.getElementById('cart-view').classList.remove('hidden');
     }
 
