@@ -109,6 +109,13 @@
         'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster.', cat: 'laundry' }
     };
 
+    // THIS INTERCEPTS THE PHONE BACK BUTTON
+    window.history.pushState({ page: 'home' }, '');
+    window.onpopstate = function(event) {
+        clearView();
+        window.history.pushState({ page: 'home' }, '');
+    };
+
     function renderProducts(data = productData) {
         const grid = document.getElementById('product-grid');
         grid.innerHTML = Object.keys(data).map(id => `
