@@ -49,17 +49,17 @@
                         <div class="text-lg">🧼</div>
                         <span class="text-[9px] font-semibold block leading-tight mt-1">Laundry Soap</span>
                     </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="alert('Personal Care coming soon!')">
                         <div class="text-lg">🧴</div>
                         <span class="text-[9px] font-semibold block leading-tight mt-1">Personal Care</span>
                         <span class="text-[8px] text-emerald-700 font-bold block mt-0.5">COMING SOON</span>
                     </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="alert('Household Cleaning coming soon!')">
                         <div class="text-lg">🪵</div>
                         <span class="text-[9px] font-semibold block leading-tight mt-1">Household</span>
                         <span class="text-[8px] text-emerald-700 font-bold block mt-0.5">COMING SOON</span>
                     </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="alert('FBP coming soon!')">
                         <div class="text-lg">📦</div>
                         <span class="text-[9px] font-semibold block leading-tight mt-1">FBP</span>
                         <span class="text-[8px] text-emerald-700 font-bold block mt-0.5">COMING SOON</span>
@@ -103,9 +103,11 @@
     </div>
 
     <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
-        <div class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-xs" onclick="clearView()"><span>🛍️</span> Shop</div>
-        <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>📦</span> Order</div>
-        <div class="flex flex-col items-center gap-1 text-slate-400 text-xs"><span>🌱</span> Integrity</div>
+        <a href="https://m.me/UpLiftClean" target="_blank" class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-[10px] text-center cursor-pointer">
+            <span>🎧</span> Customer Service
+        </a>
+        <div class="flex flex-col items-center gap-1 text-slate-400 text-[10px] text-center cursor-pointer" onclick="alert('Order section coming soon!')"><span>📦</span> Order</div>
+        <div class="flex flex-col items-center gap-1 text-slate-400 text-[10px] text-center cursor-pointer" onclick="alert('Integrity section coming soon!')"><span>🌱</span> Integrity</div>
     </nav>
 </div>
 
@@ -133,8 +135,6 @@
     }
 
     function filterProducts(cat, title) {
-        document.getElementById('cat-laundry').classList.add('bg-emerald-50', 'border-emerald-200');
-        document.getElementById('cat-laundry').classList.remove('bg-slate-50');
         const filtered = Object.fromEntries(Object.entries(productData).filter(([_, p]) => p.cat === cat));
         document.getElementById('home-content').classList.add('hidden');
         document.getElementById('list-view').classList.remove('hidden');
@@ -157,8 +157,6 @@
         document.getElementById('product-detail-view').classList.add('hidden');
         document.getElementById('cart-view').classList.add('hidden');
         document.getElementById('main-header').classList.remove('hidden');
-        document.getElementById('cat-laundry').classList.remove('bg-emerald-50', 'border-emerald-200');
-        document.getElementById('cat-laundry').classList.add('bg-slate-50');
         renderProducts();
     }
 
