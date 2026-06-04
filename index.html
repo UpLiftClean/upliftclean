@@ -25,7 +25,7 @@
                 <img src="1780000331883.png" alt="Logo" class="w-16 h-16 object-contain rounded-xl border border-slate-100 p-0.5">
                 <span class="font-bold text-2xl text-slate-900 tracking-tight">UpLiftClean</span>
             </div>
-            <button onclick="openCart()" class="p-2 bg-slate-50 rounded-full relative">
+            <button type="button" onclick="openCart()" class="p-2 bg-slate-50 rounded-full relative">
                 🛒 <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
             </button>
         </div>
@@ -85,19 +85,19 @@
                 <p>Our mission is two-fold: providing 100% natural, organic products that keep your home safe and toxic-free, and creating a powerful platform for entrepreneurs. We built this business to empower individuals around the globe to earn through direct sales, turning everyday cleaning into an opportunity for growth.</p>
                 <p>By choosing UpLiftClean, you aren't just cleaning your clothes—you are joining a movement that prioritizes the health of your family and the prosperity of our community. Welcome to a cleaner, brighter future.</p>
             </div>
-            <button onclick="clearView()" class="mt-8 text-emerald-800 font-bold underline text-sm">← Back to Home</button>
+            <button type="button" onclick="clearView()" class="mt-8 text-emerald-800 font-bold underline text-sm">← Back to Home</button>
         </div>
         
         <div id="list-view" class="hidden p-4">
             <h2 id="list-title" class="font-bold text-lg mb-4"></h2>
             <div id="list-items" class="space-y-4"></div>
-            <button onclick="clearView()" class="mt-6 text-emerald-800 underline text-sm font-bold">← Back to Home</button>
+            <button type="button" onclick="clearView()" class="mt-6 text-emerald-800 underline text-sm font-bold">← Back to Home</button>
         </div>
     </main>
 
     <!-- Product Detail View -->
     <div id="product-detail-view" class="hidden flex-1 p-4">
-        <button onclick="clearView()" class="text-emerald-800 font-bold mb-4">← Back</button>
+        <button type="button" onclick="clearView()" class="text-emerald-800 font-bold mb-4">← Back</button>
         <div id="detail-content"></div>
     </div>
 
@@ -105,8 +105,8 @@
     <div id="confirm-modal" class="hidden absolute inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
         <div id="confirm-box" class="bg-white rounded-2xl p-6 w-full max-w-sm text-center shadow-2xl">
             <div id="confirm-content"></div>
-            <button id="confirm-btn" class="w-full bg-emerald-700 text-white py-3 rounded-xl font-bold mt-4">Confirm & Add</button>
-            <button onclick="closeModal()" class="w-full mt-2 text-slate-500 text-sm underline">Cancel</button>
+            <button type="button" id="confirm-btn" class="w-full bg-emerald-700 text-white py-3 rounded-xl font-bold mt-4">Confirm & Add</button>
+            <button type="button" onclick="closeModal()" class="w-full mt-2 text-slate-500 text-sm underline">Cancel</button>
         </div>
     </div>
 
@@ -116,7 +116,7 @@
         <div id="cart-items-list" class="space-y-3"></div>
         <div class="mt-6 border-t pt-4">
             <p id="cart-total" class="font-bold text-lg">Total: $0.00</p>
-            <button onclick="clearView()" class="w-full mt-2 text-slate-500 text-sm underline">Back to Shopping</button>
+            <button type="button" onclick="clearView()" class="w-full mt-2 text-slate-500 text-sm underline">Back to Shopping</button>
         </div>
     </div>
 
@@ -128,7 +128,7 @@
         <a href="https://www.facebook.com/upliftcleanofficial" target="_blank" class="flex flex-col items-center gap-1 text-slate-400 text-[10px] text-center cursor-pointer">
             <span>👥</span> Join Community
         </a>
-        <div class="flex flex-col items-center gap-1 text-slate-400 text-[10px] text-center cursor-pointer" onclick="showStory()"><span>🌱</span> Our Story</div>
+        <button type="button" class="flex flex-col items-center gap-1 text-slate-400 text-[10px] text-center cursor-pointer" onclick="showStory()"><span>🌱</span> Our Story</button>
     </nav>
 </div>
 
@@ -155,7 +155,7 @@
                 <img src="${data[id].img}" onclick="showProductDetail('${id}')" class="h-32 object-contain mb-3 cursor-pointer">
                 <h4 class="font-bold text-xs">${data[id].name}</h4>
                 <div class="font-bold text-sm my-2">$${data[id].price.toFixed(2)} USD</div>
-                <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+                <button type="button" onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
             </div>
         `).join('');
     }
@@ -171,7 +171,7 @@
                 <div>
                     <h4 class="font-bold text-sm">${filtered[id].name}</h4>
                     <p class="font-bold text-emerald-700">$${filtered[id].price.toFixed(2)}</p>
-                    <button onclick="confirmAddToCart('${id}')" class="mt-2 text-[10px] bg-slate-900 text-white px-4 py-1 rounded-lg">Add</button>
+                    <button type="button" onclick="confirmAddToCart('${id}')" class="mt-2 text-[10px] bg-slate-900 text-white px-4 py-1 rounded-lg">Add</button>
                 </div>
             </div>
         `).join('');
@@ -200,7 +200,7 @@
                     <div>
                         <h4 class="font-bold text-sm">${productData[id].name}</h4>
                         <p class="font-bold text-emerald-700">$${productData[id].price.toFixed(2)}</p>
-                        <button onclick="confirmAddToCart('${id}')" class="mt-2 text-[10px] bg-slate-900 text-white px-4 py-1 rounded-lg">Add</button>
+                        <button type="button" onclick="confirmAddToCart('${id}')" class="mt-2 text-[10px] bg-slate-900 text-white px-4 py-1 rounded-lg">Add</button>
                     </div>
                 </div>
             `).join('');
@@ -214,7 +214,7 @@
             <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
             <p class="text-slate-600 text-sm mb-6 leading-relaxed">${p.desc}</p>
             <div class="font-bold text-xl mb-6">$${p.price.toFixed(2)} USD</div>
-            <button onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
+            <button type="button" onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
         `;
         document.getElementById('home-content').classList.add('hidden');
         document.getElementById('list-view').classList.add('hidden');
@@ -258,7 +258,7 @@
         listEl.innerHTML = cart.map(i => `
             <div class="flex justify-between items-center text-sm border-b pb-2">
                 <span>${i.name} - $${i.price.toFixed(2)}</span>
-                <button onclick="removeFromCart(${i.id})" class="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
+                <button type="button" onclick="removeFromCart(${i.id})" class="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
             </div>
         `).join('');
         document.getElementById('cart-total').innerText = `Total: $${cart.reduce((s, i) => s + i.price, 0).toFixed(2)}`;
