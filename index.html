@@ -96,7 +96,7 @@
         history.pushState({view: 'list'}, '');
         clearView(); document.getElementById('home-content').classList.add('hidden'); document.getElementById('list-view').classList.remove('hidden'); document.getElementById('list-title').innerText = title;
         const filtered = Object.fromEntries(Object.entries(productData).filter(([_, p]) => p.cat === cat));
-        document.getElementById('list-items').innerHTML = Object.keys(filtered).map(id => `<div class="flex gap-4 border-b pb-2"><img src="${filtered[id].img}" class="w-16 h-16"><div class="mt-2"><h4 class="font-bold">${filtered[id].name}</h4><button type="button" onclick="confirmAddToCart('${id}')" class="text-[10px] bg-slate-900 text-white px-2 py-1 rounded">Add</button></div></div>`).join('');
+        document.getElementById('list-items').innerHTML = Object.keys(filtered).map(id => `<div class="flex gap-4 border-b pb-2"><img src="${filtered[id].img}" onclick="showProductDetail('${id}')" class="w-16 h-16 cursor-pointer"><div class="mt-2"><h4 class="font-bold">${filtered[id].name}</h4><button type="button" onclick="confirmAddToCart('${id}')" class="text-[10px] bg-slate-900 text-white px-2 py-1 rounded">Add</button></div></div>`).join('');
     }
 
     function handleSearch(e) { if (e.key === 'Enter') { const q = e.target.value.toLowerCase(); const results = Object.fromEntries(Object.entries(productData).filter(([_, p]) => p.name.toLowerCase().includes(q))); filterProducts('laundry', `Results for "${q}"`); } }
