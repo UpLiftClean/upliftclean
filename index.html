@@ -12,20 +12,18 @@
 
 <div id="app" class="w-full max-w-md bg-white min-h-screen shadow-xl flex flex-col relative pb-24"> 
 
-    <!-- Utility Banner -->
     <div class="bg-emerald-800 text-white text-[9px] font-medium px-4 py-1 flex justify-between items-center">
         <span>🌐 Shipping Globally to Your Doorstep</span>
         <span class="underline">Details</span>
     </div> 
 
-    <!-- Header -->
     <header id="main-header" class="bg-white px-4 pt-3 pb-4 sticky top-0 z-50 border-b border-slate-100">
         <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-3">
                 <img src="1780000331883.png" alt="Logo" class="w-16 h-16 object-contain rounded-xl border border-slate-100 p-0.5">
                 <span class="font-bold text-2xl text-slate-900 tracking-tight">UpLiftClean</span>
             </div>
-            <button type="button" onclick="openCart()" class="p-2 bg-slate-50 rounded-full relative">
+            <button type="button" onclick="navigate('cart')" class="p-2 bg-slate-50 rounded-full relative">
                 🛒 <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
             </button>
         </div>
@@ -35,7 +33,6 @@
         </div>
     </header> 
 
-    <!-- Main Content Area -->
     <main id="main-view" class="flex-1 overflow-y-auto">
         <div id="home-content">
             <div class="p-4">
@@ -45,29 +42,16 @@
                 </div>
             </div> 
 
-            <!-- Category Section -->
             <div class="px-4 pb-6">
                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
                 <div class="grid grid-cols-4 gap-2">
-                    <div id="cat-laundry" class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer transition-colors" onclick="filterProducts('laundry', 'Laundry Soap')">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="filterProducts('laundry', 'Laundry Soap')">
                         <div class="text-lg">🧼</div>
                         <span class="text-[9px] font-semibold block leading-tight mt-1">Laundry Soap</span>
                     </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="alert('Personal Care coming soon!')">
-                        <div class="text-lg">🧴</div>
-                        <span class="text-[9px] font-semibold block leading-tight mt-1">Personal Care</span>
-                        <span class="text-[8px] text-emerald-700 font-bold block mt-0.5">COMING SOON</span>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="alert('Household Cleaning coming soon!')">
-                        <div class="text-lg">🪵</div>
-                        <span class="text-[9px] font-semibold block leading-tight mt-1">Household</span>
-                        <span class="text-[8px] text-emerald-700 font-bold block mt-0.5">COMING SOON</span>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="alert('FBP coming soon!')">
-                        <div class="text-lg">📦</div>
-                        <span class="text-[9px] font-semibold block leading-tight mt-1">FBP</span>
-                        <span class="text-[8px] text-emerald-700 font-bold block mt-0.5">COMING SOON</span>
-                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🧴</div><span class="text-[9px] text-slate-400 block mt-1">Personal Care</span></div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] text-slate-400 block mt-1">Household</span></div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] text-slate-400 block mt-1">FBP</span></div>
                 </div>
             </div>
 
@@ -77,58 +61,38 @@
             </div>
         </div>
         
-        <!-- Story View -->
         <div id="story-view" class="hidden p-6">
             <h2 class="font-bold text-2xl mb-4">Our Story</h2>
             <div class="text-slate-600 text-sm leading-relaxed space-y-4">
-                <p>UpLiftClean was born from humble beginnings, rooted in a desire to create something better for families everywhere. We saw a world filled with harsh chemicals and knew we could offer a change.</p>
-                <p>Our mission is two-fold: providing 100% natural, organic products that keep your home safe and toxic-free, and creating a powerful platform for entrepreneurs. We built this business to empower individuals around the globe to earn through direct sales, turning everyday cleaning into an opportunity for growth.</p>
-                <p>By choosing UpLiftClean, you aren't just cleaning your clothes—you are joining a movement that prioritizes the health of your family and the prosperity of our community. Welcome to a cleaner, brighter future.</p>
+                <p>UpLiftClean was born from humble beginnings, rooted in a desire to create something better for families everywhere.</p>
+                <p>Our mission is two-fold: providing 100% natural, organic products that keep your home safe and toxic-free, and creating a powerful platform for entrepreneurs. We built this business to empower individuals around the globe to earn through direct sales.</p>
+                <p>Welcome to a cleaner, brighter future.</p>
             </div>
-            <button type="button" onclick="clearView()" class="mt-8 text-emerald-800 font-bold underline text-sm">← Back to Home</button>
+            <button type="button" onclick="navigate('home')" class="mt-8 text-emerald-800 font-bold underline text-sm">← Back to Home</button>
         </div>
         
         <div id="list-view" class="hidden p-4">
             <h2 id="list-title" class="font-bold text-lg mb-4"></h2>
             <div id="list-items" class="space-y-4"></div>
-            <button type="button" onclick="clearView()" class="mt-6 text-emerald-800 underline text-sm font-bold">← Back to Home</button>
+            <button type="button" onclick="navigate('home')" class="mt-6 text-emerald-800 underline text-sm font-bold">← Back to Home</button>
+        </div>
+
+        <div id="product-detail-view" class="hidden flex-1 p-4">
+            <button type="button" onclick="navigate('home')" class="text-emerald-800 font-bold mb-4">← Back</button>
+            <div id="detail-content"></div>
+        </div>
+
+        <div id="cart-view" class="hidden flex-1 p-4">
+            <h2 class="text-lg font-bold mb-4">Your Shopping Cart</h2>
+            <div id="cart-items-list" class="space-y-3"></div>
+            <button type="button" onclick="navigate('home')" class="w-full mt-6 text-slate-500 text-sm underline">Back to Shopping</button>
         </div>
     </main>
 
-    <!-- Product Detail View -->
-    <div id="product-detail-view" class="hidden flex-1 p-4">
-        <button type="button" onclick="clearView()" class="text-emerald-800 font-bold mb-4">← Back</button>
-        <div id="detail-content"></div>
-    </div>
-
-    <!-- Confirmation Modal -->
-    <div id="confirm-modal" class="hidden absolute inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-        <div id="confirm-box" class="bg-white rounded-2xl p-6 w-full max-w-sm text-center shadow-2xl">
-            <div id="confirm-content"></div>
-            <button type="button" id="confirm-btn" class="w-full bg-emerald-700 text-white py-3 rounded-xl font-bold mt-4">Confirm & Add</button>
-            <button type="button" onclick="closeModal()" class="w-full mt-2 text-slate-500 text-sm underline">Cancel</button>
-        </div>
-    </div>
-
-    <!-- Cart View -->
-    <div id="cart-view" class="hidden flex-1 p-4">
-        <h2 class="text-lg font-bold mb-4">Your Shopping Cart</h2>
-        <div id="cart-items-list" class="space-y-3"></div>
-        <div class="mt-6 border-t pt-4">
-            <p id="cart-total" class="font-bold text-lg">Total: $0.00</p>
-            <button type="button" onclick="clearView()" class="w-full mt-2 text-slate-500 text-sm underline">Back to Shopping</button>
-        </div>
-    </div>
-
-    <!-- Footer Nav -->
     <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
-        <a href="https://m.me/upliftcleanofficial" target="_blank" class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-[10px] text-center cursor-pointer">
-            <span>🎧</span> Customer Service
-        </a>
-        <a href="https://www.facebook.com/upliftcleanofficial" target="_blank" class="flex flex-col items-center gap-1 text-slate-400 text-[10px] text-center cursor-pointer">
-            <span>👥</span> Join Community
-        </a>
-        <button type="button" class="flex flex-col items-center gap-1 text-slate-400 text-[10px] text-center cursor-pointer" onclick="showStory()"><span>🌱</span> Our Story</button>
+        <a href="https://m.me/upliftcleanofficial" target="_blank" class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-[10px] text-center"><span>🎧</span> Customer Service</a>
+        <a href="https://www.facebook.com/upliftcleanofficial" target="_blank" class="flex flex-col items-center gap-1 text-slate-400 font-bold text-[10px] text-center"><span>👥</span> Join Community</a>
+        <button type="button" onclick="navigate('story')" class="flex flex-col items-center gap-1 text-slate-400 font-bold text-[10px] text-center"><span>🌱</span> Our Story</button>
     </nav>
 </div>
 
@@ -140,13 +104,28 @@
         'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster.', cat: 'laundry' }
     };
 
-    function showStory() {
+    function navigate(view) {
         document.getElementById('home-content').classList.add('hidden');
+        document.getElementById('story-view').classList.add('hidden');
         document.getElementById('list-view').classList.add('hidden');
         document.getElementById('product-detail-view').classList.add('hidden');
         document.getElementById('cart-view').classList.add('hidden');
-        document.getElementById('story-view').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+
+        if (view === 'home') {
+            document.getElementById('home-content').classList.remove('hidden');
+        } else if (view === 'story') {
+            window.history.pushState({ view: 'story' }, '');
+            document.getElementById('story-view').classList.remove('hidden');
+        } else if (view === 'cart') {
+            window.history.pushState({ view: 'cart' }, '');
+            document.getElementById('cart-view').classList.remove('hidden');
+        }
     }
+
+    window.onpopstate = function() {
+        navigate('home');
+    };
 
     function renderProducts(data = productData) {
         const grid = document.getElementById('product-grid');
@@ -155,122 +134,56 @@
                 <img src="${data[id].img}" onclick="showProductDetail('${id}')" class="h-32 object-contain mb-3 cursor-pointer">
                 <h4 class="font-bold text-xs">${data[id].name}</h4>
                 <div class="font-bold text-sm my-2">$${data[id].price.toFixed(2)} USD</div>
-                <button type="button" onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add to Cart</button>
+                <button type="button" onclick="addToCart('${id}')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add</button>
             </div>
         `).join('');
     }
 
     function filterProducts(cat, title) {
-        const filtered = Object.fromEntries(Object.entries(productData).filter(([_, p]) => p.cat === cat));
-        document.getElementById('home-content').classList.add('hidden');
+        navigate('list');
         document.getElementById('list-view').classList.remove('hidden');
         document.getElementById('list-title').innerText = title;
+        const filtered = Object.fromEntries(Object.entries(productData).filter(([_, p]) => p.cat === cat));
         document.getElementById('list-items').innerHTML = Object.keys(filtered).map(id => `
-            <div class="flex gap-4 p-2 border-b">
-                <img src="${filtered[id].img}" class="w-20 h-20 object-contain cursor-pointer" onclick="showProductDetail('${id}')">
-                <div>
-                    <h4 class="font-bold text-sm">${filtered[id].name}</h4>
-                    <p class="font-bold text-emerald-700">$${filtered[id].price.toFixed(2)}</p>
-                    <button type="button" onclick="confirmAddToCart('${id}')" class="mt-2 text-[10px] bg-slate-900 text-white px-4 py-1 rounded-lg">Add</button>
-                </div>
+            <div class="flex gap-4 border-b pb-2">
+                <img src="${filtered[id].img}" class="w-16 h-16 object-contain">
+                <div><h4 class="font-bold text-sm">${filtered[id].name}</h4><p class="text-emerald-700 font-bold">$${filtered[id].price.toFixed(2)}</p></div>
             </div>
         `).join('');
     }
 
-    function clearView() {
-        document.getElementById('home-content').classList.remove('hidden');
-        document.getElementById('list-view').classList.add('hidden');
-        document.getElementById('product-detail-view').classList.add('hidden');
-        document.getElementById('cart-view').classList.add('hidden');
-        document.getElementById('story-view').classList.add('hidden');
-        document.getElementById('main-header').classList.remove('hidden');
-        renderProducts();
-    }
-
-    function handleSearch(event) {
-        if (event.key === 'Enter') {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const results = Object.keys(productData).filter(id => productData[id].name.toLowerCase().includes(query));
-            document.getElementById('home-content').classList.add('hidden');
-            document.getElementById('list-view').classList.remove('hidden');
-            document.getElementById('list-title').innerText = `Results for "${query}"`;
-            document.getElementById('list-items').innerHTML = results.map(id => `
-                <div class="flex gap-4 p-2 border-b">
-                    <img src="${productData[id].img}" class="w-20 h-20 object-contain cursor-pointer" onclick="showProductDetail('${id}')">
-                    <div>
-                        <h4 class="font-bold text-sm">${productData[id].name}</h4>
-                        <p class="font-bold text-emerald-700">$${productData[id].price.toFixed(2)}</p>
-                        <button type="button" onclick="confirmAddToCart('${id}')" class="mt-2 text-[10px] bg-slate-900 text-white px-4 py-1 rounded-lg">Add</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-    }
-
     function showProductDetail(id) {
-        const p = productData[id];
-        document.getElementById('detail-content').innerHTML = `
-            <img src="${p.img}" class="w-full h-64 object-contain mb-6">
-            <h2 class="text-2xl font-bold mb-2">${p.name}</h2>
-            <p class="text-slate-600 text-sm mb-6 leading-relaxed">${p.desc}</p>
-            <div class="font-bold text-xl mb-6">$${p.price.toFixed(2)} USD</div>
-            <button type="button" onclick="confirmAddToCart('${id}')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Add to Cart</button>
-        `;
-        document.getElementById('home-content').classList.add('hidden');
-        document.getElementById('list-view').classList.add('hidden');
+        navigate('detail');
         document.getElementById('product-detail-view').classList.remove('hidden');
         document.getElementById('main-header').classList.add('hidden');
-    }
-
-    function openCart() {
-        document.getElementById('home-content').classList.add('hidden');
-        document.getElementById('list-view').classList.add('hidden');
-        document.getElementById('product-detail-view').classList.add('hidden');
-        document.getElementById('story-view').classList.add('hidden');
-        document.getElementById('cart-view').classList.remove('hidden');
-    }
-
-    function confirmAddToCart(id) {
         const p = productData[id];
-        document.getElementById('confirm-content').innerHTML = `
-            <h3 class="font-bold text-lg">Add to cart?</h3>
-            <p class="text-sm text-slate-600 mb-2">${p.name}</p>
-            <p class="font-bold">$${p.price.toFixed(2)}</p>
+        document.getElementById('detail-content').innerHTML = `
+            <h2 class="text-2xl font-bold">${p.name}</h2>
+            <p class="text-slate-600 text-sm mt-2">${p.desc}</p>
+            <p class="text-xl font-bold mt-4">$${p.price.toFixed(2)}</p>
+            <button type="button" onclick="addToCart('${id}')" class="w-full bg-emerald-700 text-white py-3 rounded-xl mt-6 font-bold">Add to Cart</button>
         `;
-        document.getElementById('confirm-btn').onclick = () => {
-            cart.push({ ...p, id: Date.now() });
-            saveAndRefresh();
-            closeModal();
-        };
-        document.getElementById('confirm-modal').classList.remove('hidden');
     }
 
-    function closeModal() { document.getElementById('confirm-modal').classList.add('hidden'); }
-
-    function saveAndRefresh() {
+    function addToCart(id) {
+        cart.push({ ...productData[id], id: Date.now() });
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartUI();
+        alert('Added to cart!');
     }
 
     function updateCartUI() {
         document.getElementById('cart-count').innerText = cart.length;
-        const listEl = document.getElementById('cart-items-list');
-        listEl.innerHTML = cart.map(i => `
-            <div class="flex justify-between items-center text-sm border-b pb-2">
-                <span>${i.name} - $${i.price.toFixed(2)}</span>
-                <button type="button" onclick="removeFromCart(${i.id})" class="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
+        document.getElementById('cart-items-list').innerHTML = cart.map(i => `
+            <div class="flex justify-between text-sm py-2 border-b">
+                <span>${i.name}</span><span>$${i.price.toFixed(2)}</span>
             </div>
         `).join('');
-        document.getElementById('cart-total').innerText = `Total: $${cart.reduce((s, i) => s + i.price, 0).toFixed(2)}`;
-    }
-
-    function removeFromCart(id) {
-        cart = cart.filter(item => item.id !== id);
-        saveAndRefresh();
     }
 
     renderProducts();
     updateCartUI();
+    window.history.replaceState({ view: 'home' }, '');
 </script>
 </body>
 </html>
