@@ -14,7 +14,6 @@
 
     <div class="bg-emerald-800 text-white text-[9px] font-medium px-4 py-1 flex justify-between items-center">
         <span>🌐 Shipping Globally to Your Doorstep</span>
-        <span class="underline">Details</span>
     </div> 
 
     <header id="main-header" class="bg-white px-4 pt-3 pb-4 sticky top-0 z-50 border-b border-slate-100">
@@ -23,167 +22,97 @@
                 <img src="1780000331883.png" alt="Logo" class="w-16 h-16 object-contain rounded-xl border border-slate-100 p-0.5">
                 <span class="font-bold text-2xl text-slate-900 tracking-tight">UpLiftClean</span>
             </div>
-            <button type="button" onclick="navigate('cart')" class="p-2 bg-slate-50 rounded-full relative">
-                🛒 <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
-            </button>
+            <button type="button" onclick="showView('cart-view')" class="p-2 bg-slate-50 rounded-full relative">🛒 <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span></button>
         </div>
-        <div class="relative">
-            <input type="text" id="search-input" onkeypress="handleSearch(event)" placeholder="Search organic laundry essentials..." class="w-full bg-slate-100 text-sm pl-10 pr-4 py-3 rounded-full border border-transparent focus:bg-white focus:border-slate-300 outline-none transition-all">
-            <span class="absolute left-3.5 top-3.5 text-slate-400">🔍</span>
-        </div>
+        <input type="text" id="search-input" placeholder="Search..." class="w-full bg-slate-100 text-sm px-4 py-3 rounded-full border border-transparent focus:bg-white focus:border-slate-300 outline-none">
     </header> 
 
     <main id="main-view" class="flex-1 overflow-y-auto">
-        <div id="home-content">
-            <div class="p-4">
-                <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm relative overflow-hidden">
-                    <h2 class="text-xl font-bold mb-1">Organic & 100% Natural Plant-Based</h2>
-                    <p class="text-emerald-100 text-sm font-semibold tracking-wide">NATURAL PURITY, POWERFUL OPPORTUNITY</p>
-                </div>
-            </div> 
-
-            <div class="px-4 pb-6">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Shop Categories</h3>
-                <div class="grid grid-cols-4 gap-2">
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center cursor-pointer" onclick="filterProducts('laundry', 'Laundry Soap')">
-                        <div class="text-lg">🧼</div>
-                        <span class="text-[9px] font-semibold block leading-tight mt-1">Laundry Soap</span>
-                    </div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🧴</div><span class="text-[9px] text-slate-400 block mt-1">Personal Care</span></div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">🪵</div><span class="text-[9px] text-slate-400 block mt-1">Household</span></div>
-                    <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5 text-center"><div class="text-lg">📦</div><span class="text-[9px] text-slate-400 block mt-1">FBP</span></div>
-                </div>
+        <div id="home-view">
+            <div class="p-4"><div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-5 rounded-2xl shadow-sm"><h2 class="text-xl font-bold">Organic & Natural</h2></div></div>
+            <div class="px-4 pb-6 grid grid-cols-4 gap-2">
+                <div onclick="filterProducts('laundry')" class="bg-slate-50 p-2 text-center rounded-xl cursor-pointer"><div class="text-lg">🧼</div><span class="text-[9px] font-bold">Laundry Soap</span></div>
+                <div class="bg-slate-50 p-2 text-center rounded-xl"><div class="text-lg">🧴</div><span class="text-[9px] font-bold text-emerald-700">COMING SOON</span></div>
+                <div class="bg-slate-50 p-2 text-center rounded-xl"><div class="text-lg">🪵</div><span class="text-[9px] font-bold text-emerald-700">COMING SOON</span></div>
+                <div class="bg-slate-50 p-2 text-center rounded-xl"><div class="text-lg">📦</div><span class="text-[9px] font-bold text-emerald-700">COMING SOON</span></div>
             </div>
-
-            <div class="px-4">
-                <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Our Organic Lineup</h3>
-                <div id="product-grid" class="grid grid-cols-2 gap-3"></div>
-            </div>
+            <div class="px-4"><div id="product-grid" class="grid grid-cols-2 gap-3"></div></div>
         </div>
-        
-        <div id="story-view" class="hidden p-6">
-            <h2 class="font-bold text-2xl mb-4">Our Story</h2>
-            <div class="text-slate-600 text-sm leading-relaxed space-y-4">
-                <p>UpLiftClean was born from humble beginnings, rooted in a desire to create something better for families everywhere.</p>
-                <p>Our mission is two-fold: providing 100% natural, organic products that keep your home safe and toxic-free, and creating a powerful platform for entrepreneurs. We built this business to empower individuals around the globe to earn through direct sales.</p>
-                <p>Welcome to a cleaner, brighter future.</p>
-            </div>
-            <button type="button" onclick="navigate('home')" class="mt-8 text-emerald-800 font-bold underline text-sm">← Back to Home</button>
-        </div>
-        
+
         <div id="list-view" class="hidden p-4">
-            <h2 id="list-title" class="font-bold text-lg mb-4"></h2>
-            <div id="list-items" class="space-y-4"></div>
-            <button type="button" onclick="navigate('home')" class="mt-6 text-emerald-800 underline text-sm font-bold">← Back to Home</button>
+            <button type="button" onclick="showView('home-view')" class="text-emerald-800 font-bold mb-4">← Back</button>
+            <div id="list-items"></div>
         </div>
 
-        <div id="product-detail-view" class="hidden flex-1 p-4">
-            <button type="button" onclick="navigate('home')" class="text-emerald-800 font-bold mb-4">← Back</button>
+        <div id="product-detail-view" class="hidden p-4">
+            <button type="button" onclick="showView('home-view')" class="text-emerald-800 font-bold mb-4">← Back</button>
             <div id="detail-content"></div>
         </div>
 
-        <div id="cart-view" class="hidden flex-1 p-4">
-            <h2 class="text-lg font-bold mb-4">Your Shopping Cart</h2>
-            <div id="cart-items-list" class="space-y-3"></div>
-            <button type="button" onclick="navigate('home')" class="w-full mt-6 text-slate-500 text-sm underline">Back to Shopping</button>
+        <div id="story-view" class="hidden p-6">
+            <h2 class="font-bold text-2xl mb-4">Our Story</h2>
+            <p class="text-slate-600 text-sm">UpLiftClean started from humble beginnings to help families thrive with organic products and global direct sales opportunities.</p>
+            <button type="button" onclick="showView('home-view')" class="mt-8 text-emerald-800 font-bold underline">← Back to Home</button>
+        </div>
+
+        <div id="cart-view" class="hidden p-4">
+            <h2 class="font-bold text-lg mb-4">Your Cart</h2>
+            <div id="cart-items-list"></div>
+            <button type="button" onclick="showView('home-view')" class="mt-4 text-slate-500 underline">Back to Shopping</button>
         </div>
     </main>
 
-    <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t border-slate-100 flex items-center justify-around px-2">
-        <a href="https://m.me/upliftcleanofficial" target="_blank" class="flex flex-col items-center gap-1 text-emerald-700 font-bold text-[10px] text-center"><span>🎧</span> Customer Service</a>
-        <a href="https://www.facebook.com/upliftcleanofficial" target="_blank" class="flex flex-col items-center gap-1 text-slate-400 font-bold text-[10px] text-center"><span>👥</span> Join Community</a>
-        <button type="button" onclick="navigate('story')" class="flex flex-col items-center gap-1 text-slate-400 font-bold text-[10px] text-center"><span>🌱</span> Our Story</button>
+    <nav class="absolute bottom-0 left-0 right-0 h-20 bg-white border-t flex items-center justify-around px-2">
+        <a href="https://m.me/upliftcleanofficial" target="_blank" class="text-[10px] text-center font-bold text-emerald-700">🎧 Service</a>
+        <a href="https://www.facebook.com/upliftcleanofficial" target="_blank" class="text-[10px] text-center font-bold text-slate-400">👥 Join</a>
+        <button type="button" onclick="showView('story-view')" class="text-[10px] text-center font-bold text-slate-400">🌱 Our Story</button>
     </nav>
 </div>
 
 <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const productData = {
         'set': { name: 'The Pure Power Set', price: 7.99, img: 'thecompleteset.png', desc: 'Experience the ultimate laundry transformation.', cat: 'laundry' },
         'soap': { name: 'Pure Prime Saponin Soap', price: 4.99, img: 'pureprime.jpg', desc: 'Our pure, organic saponin-based soap.', cat: 'laundry' },
         'booster': { name: 'Pure Plus Laundry Booster', price: 4.49, img: 'pureplus.jpg', desc: 'A powerful, all-natural laundry booster.', cat: 'laundry' }
     };
 
-    function navigate(view) {
-        document.getElementById('home-content').classList.add('hidden');
-        document.getElementById('story-view').classList.add('hidden');
+    function showView(viewId) {
+        document.getElementById('home-view').classList.add('hidden');
         document.getElementById('list-view').classList.add('hidden');
         document.getElementById('product-detail-view').classList.add('hidden');
+        document.getElementById('story-view').classList.add('hidden');
         document.getElementById('cart-view').classList.add('hidden');
-        document.getElementById('main-header').classList.remove('hidden');
-
-        if (view === 'home') {
-            document.getElementById('home-content').classList.remove('hidden');
-        } else if (view === 'story') {
-            window.history.pushState({ view: 'story' }, '');
-            document.getElementById('story-view').classList.remove('hidden');
-        } else if (view === 'cart') {
-            window.history.pushState({ view: 'cart' }, '');
-            document.getElementById('cart-view').classList.remove('hidden');
-        }
+        document.getElementById(viewId).classList.remove('hidden');
     }
 
-    window.onpopstate = function() {
-        navigate('home');
-    };
+    // INTERCEPT BACK BUTTON
+    window.addEventListener('popstate', function(event) {
+        history.pushState(null, null, document.URL);
+        showView('home-view');
+    });
+    history.pushState(null, null, document.URL);
 
-    function renderProducts(data = productData) {
-        const grid = document.getElementById('product-grid');
-        grid.innerHTML = Object.keys(data).map(id => `
-            <div class="border border-slate-100 rounded-2xl bg-white p-3 shadow-sm flex flex-col justify-between">
-                <img src="${data[id].img}" onclick="showProductDetail('${id}')" class="h-32 object-contain mb-3 cursor-pointer">
-                <h4 class="font-bold text-xs">${data[id].name}</h4>
-                <div class="font-bold text-sm my-2">$${data[id].price.toFixed(2)} USD</div>
-                <button type="button" onclick="addToCart('${id}')" class="w-full bg-slate-900 text-white text-[10px] py-2 rounded-lg">Add</button>
+    function renderProducts() {
+        document.getElementById('product-grid').innerHTML = Object.keys(productData).map(id => `
+            <div class="border rounded-2xl p-3 bg-white">
+                <img src="${productData[id].img}" onclick="showDetail('${id}')" class="h-24 mx-auto cursor-pointer">
+                <h4 class="font-bold text-xs mt-2">${productData[id].name}</h4>
+                <button type="button" onclick="alert('Added!')" class="w-full bg-slate-900 text-white text-[10px] py-1 mt-2 rounded">Add</button>
             </div>
         `).join('');
     }
 
-    function filterProducts(cat, title) {
-        navigate('list');
-        document.getElementById('list-view').classList.remove('hidden');
-        document.getElementById('list-title').innerText = title;
-        const filtered = Object.fromEntries(Object.entries(productData).filter(([_, p]) => p.cat === cat));
-        document.getElementById('list-items').innerHTML = Object.keys(filtered).map(id => `
-            <div class="flex gap-4 border-b pb-2">
-                <img src="${filtered[id].img}" class="w-16 h-16 object-contain">
-                <div><h4 class="font-bold text-sm">${filtered[id].name}</h4><p class="text-emerald-700 font-bold">$${filtered[id].price.toFixed(2)}</p></div>
-            </div>
-        `).join('');
+    function showDetail(id) {
+        document.getElementById('detail-content').innerHTML = `<h2 class="font-bold text-lg">${productData[id].name}</h2><p class="text-sm">${productData[id].desc}</p>`;
+        showView('product-detail-view');
     }
 
-    function showProductDetail(id) {
-        navigate('detail');
-        document.getElementById('product-detail-view').classList.remove('hidden');
-        document.getElementById('main-header').classList.add('hidden');
-        const p = productData[id];
-        document.getElementById('detail-content').innerHTML = `
-            <h2 class="text-2xl font-bold">${p.name}</h2>
-            <p class="text-slate-600 text-sm mt-2">${p.desc}</p>
-            <p class="text-xl font-bold mt-4">$${p.price.toFixed(2)}</p>
-            <button type="button" onclick="addToCart('${id}')" class="w-full bg-emerald-700 text-white py-3 rounded-xl mt-6 font-bold">Add to Cart</button>
-        `;
-    }
-
-    function addToCart(id) {
-        cart.push({ ...productData[id], id: Date.now() });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartUI();
-        alert('Added to cart!');
-    }
-
-    function updateCartUI() {
-        document.getElementById('cart-count').innerText = cart.length;
-        document.getElementById('cart-items-list').innerHTML = cart.map(i => `
-            <div class="flex justify-between text-sm py-2 border-b">
-                <span>${i.name}</span><span>$${i.price.toFixed(2)}</span>
-            </div>
-        `).join('');
+    function filterProducts(cat) {
+        showView('list-view');
+        document.getElementById('list-items').innerHTML = 'Filtered view active.';
     }
 
     renderProducts();
-    updateCartUI();
-    window.history.replaceState({ view: 'home' }, '');
 </script>
 </body>
 </html>
